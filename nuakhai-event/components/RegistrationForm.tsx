@@ -20,7 +20,7 @@ export default function RegistrationForm() {
     guests: {
       adults: { veg: 0, nonVeg: 1 },
       children6to12: { veg: 0, nonVeg: 0 },
-      childrenBelow6: 0,
+      childrenBelow6: { veg: 0, nonVeg: 0 },
       visitingParents: { veg: 0, nonVeg: 0 },
     },
   });
@@ -145,9 +145,9 @@ export default function RegistrationForm() {
     (formData.guests.visitingParents.veg + formData.guests.visitingParents.nonVeg) * prices.visitingParents;
 
   return (
-    <form className="mt-4 space-y-4" onSubmit={(e) => { e.preventDefault(); handleRegister(); }}>
+    <form className="mt-4 space-y-4 px-2 sm:px-4 md:px-8" onSubmit={(e) => { e.preventDefault(); handleRegister(); }}>
       <div>
-        <label className="block text-sm font-medium text-gray-700">Name</label>
+        <label className="block text-sm md:text-base font-medium text-gray-700">Name</label>
         <div className="mt-1 flex items-center space-x-2">
           <FaUserCircle className="text-gray-400" />
           <input
@@ -155,7 +155,7 @@ export default function RegistrationForm() {
             name="name"
             value={formData.name}
             onChange={handleChange}
-            className="block w-full px-3 py-2 border rounded-md shadow-sm focus:ring focus:ring-indigo-200"
+            className="block w-full px-3 py-2 border rounded-md shadow-sm focus:ring focus:ring-indigo-200 text-sm md:text-base px-2 py-1"
             required
           />
         </div>
@@ -163,7 +163,7 @@ export default function RegistrationForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">Email</label>
+        <label className="block text-sm md:text-base font-medium text-gray-700">Email</label>
         <div className="mt-1 flex items-center space-x-2">
           <FaRegEnvelope className="text-gray-400" />
           <input
@@ -171,7 +171,7 @@ export default function RegistrationForm() {
             name="email"
             value={formData.email}
             onChange={handleChange}
-            className="block w-full px-3 py-2 border rounded-md shadow-sm focus:ring focus:ring-indigo-200"
+            className="block w-full px-3 py-2 border rounded-md shadow-sm focus:ring focus:ring-indigo-200 text-sm md:text-base px-2 py-1"
             required
           />
         </div>
@@ -179,7 +179,7 @@ export default function RegistrationForm() {
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700">Phone Number</label>
+        <label className="block text-sm md:text-base font-medium text-gray-700">Phone Number</label>
         <div className="mt-1 flex items-center space-x-2">
           <FaMobileAlt className="text-gray-400" />
           <input
@@ -187,101 +187,193 @@ export default function RegistrationForm() {
             name="phone"
             value={formData.phone}
             onChange={handleChange}
-            className="block w-full px-3 py-2 border rounded-md shadow-sm focus:ring focus:ring-indigo-200"
+            className="block w-full px-3 py-2 border rounded-md shadow-sm focus:ring focus:ring-indigo-200 text-sm md:text-base px-2 py-1"
             required
           />
         </div>
       </div>
 
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">Guest Breakdown</label>
-        <div className="grid grid-cols-4 font-semibold text-sm border-b pb-1">
-          <div className="text-left">Guest Type</div>
-          <div className="text-center flex items-center justify-center space-x-1">
-            <FaCarrot className="text-green-600" /><span>Veg</span>
-          </div>
-          <div className="text-center flex items-center justify-center space-x-1">
-            <FaDrumstickBite className="text-red-600" /><span>Non-Veg</span>
-          </div>
-          <div className="text-right">Subtotal</div>
-        </div>
+        <label className="block text-sm md:text-base font-medium text-gray-700 mb-2">Guest Breakdown</label>
 
         {/* Adults */}
-        <div className="grid grid-cols-4 items-center py-2 border-b text-sm">
-          <div className="text-left flex items-center space-x-1">
+        <div className="grid grid-cols-1 md:grid-cols-4 items-center py-1.5 border-b text-sm">
+          <div className="text-left flex items-center space-x-1 px-3">
             <FaUserCircle className="text-blue-600" /><span>Adults &amp; Children above 12Yr (£40)</span>
           </div>
-          <div className="flex justify-center items-center space-x-1">
-            <button type="button" onClick={() => setFormData(prev => ({ ...prev, guests: { ...prev.guests, adults: { ...prev.guests.adults, veg: Math.max(0, prev.guests.adults.veg - 1) } } }))} className="px-2 py-1 bg-gray-200 rounded">-</button>
-            <input type="number" value={formData.guests.adults.veg} readOnly className="w-10 text-center border rounded-md py-1" />
-            <button type="button" onClick={() => { const t = formData.guests.adults.veg + formData.guests.adults.nonVeg; if (t >= 99) return; setFormData(prev => ({ ...prev, guests: { ...prev.guests, adults: { ...prev.guests.adults, veg: prev.guests.adults.veg + 1 } } })) }} className="px-2 py-1 bg-gray-200 rounded">+</button>
+          <div>
+            <div className="flex flex-row items-center justify-center gap-2 w-full">
+              <button type="button" onClick={() => setFormData(prev => ({ ...prev, guests: { ...prev.guests, adults: { ...prev.guests.adults, veg: Math.max(0, prev.guests.adults.veg - 1) } } }))} className="px-3 py-1.5 bg-gray-200 rounded">-</button>
+              <input type="number" value={formData.guests.adults.veg} readOnly className="w-12 text-center border rounded-md text-sm md:text-base px-2 py-1.5" />
+              <button type="button" onClick={() => { const t = formData.guests.adults.veg + formData.guests.adults.nonVeg; if (t >= 99) return; setFormData(prev => ({ ...prev, guests: { ...prev.guests, adults: { ...prev.guests.adults, veg: prev.guests.adults.veg + 1 } } })) }} className="px-3 py-1.5 bg-gray-200 rounded">+</button>
+            </div>
+            <div className="text-xs text-center mt-1 text-green-700 font-medium">(Veg)</div>
           </div>
-          <div className="flex justify-center items-center space-x-1">
-            <button type="button" onClick={() => setFormData(prev => ({ ...prev, guests: { ...prev.guests, adults: { ...prev.guests.adults, nonVeg: Math.max(0, prev.guests.adults.nonVeg - 1) } } }))} className="px-2 py-1 bg-gray-200 rounded">-</button>
-            <input type="number" value={formData.guests.adults.nonVeg} readOnly className="w-10 text-center border rounded-md py-1" />
-            <button type="button" onClick={() => { const t = formData.guests.adults.veg + formData.guests.adults.nonVeg; if (t >= 99) return; setFormData(prev => ({ ...prev, guests: { ...prev.guests, adults: { ...prev.guests.adults, nonVeg: prev.guests.adults.nonVeg + 1 } } })) }} className="px-2 py-1 bg-gray-200 rounded">+</button>
+          <div>
+            <div className="flex flex-row items-center justify-center gap-2 w-full">
+              <button type="button" onClick={() => setFormData(prev => ({ ...prev, guests: { ...prev.guests, adults: { ...prev.guests.adults, nonVeg: Math.max(0, prev.guests.adults.nonVeg - 1) } } }))} className="px-3 py-1.5 bg-gray-200 rounded">-</button>
+              <input type="number" value={formData.guests.adults.nonVeg} readOnly className="w-12 text-center border rounded-md text-sm md:text-base px-2 py-1.5" />
+              <button type="button" onClick={() => { const t = formData.guests.adults.veg + formData.guests.adults.nonVeg; if (t >= 99) return; setFormData(prev => ({ ...prev, guests: { ...prev.guests, adults: { ...prev.guests.adults, nonVeg: prev.guests.adults.nonVeg + 1 } } })) }} className="px-3 py-1.5 bg-gray-200 rounded">+</button>
+            </div>
+            <div className="text-xs text-center mt-1 text-red-700 font-medium">(Non-Veg)</div>
           </div>
-          <div className="text-right">£{(formData.guests.adults.veg + formData.guests.adults.nonVeg) * 40}</div>
+          <div className="text-right px-3">£{(formData.guests.adults.veg + formData.guests.adults.nonVeg) * 40}</div>
         </div>
 
         {/* Children 6-12 */}
-        <div className="grid grid-cols-4 items-center py-2 border-b text-sm">
-          <div className="text-left flex items-center space-x-1">
+        <div className="grid grid-cols-1 md:grid-cols-4 items-center py-1.5 border-b text-sm">
+          <div className="text-left flex items-center space-x-1 px-3">
             <FaBaby className="text-yellow-500" /><span>Child (6-12Yr) (£20)</span>
           </div>
-          <div className="flex justify-center items-center space-x-1">
-            <button type="button" onClick={() => setFormData(prev => ({ ...prev, guests: { ...prev.guests, children6to12: { ...prev.guests.children6to12, veg: Math.max(0, prev.guests.children6to12.veg - 1) } } }))} className="px-2 py-1 bg-gray-200 rounded">-</button>
-            <input type="number" value={formData.guests.children6to12.veg} readOnly className="w-10 text-center border rounded-md py-1" />
-            <button type="button" onClick={() => { const t = formData.guests.children6to12.veg + formData.guests.children6to12.nonVeg; if (t >= 99) return; setFormData(prev => ({ ...prev, guests: { ...prev.guests, children6to12: { ...prev.guests.children6to12, veg: prev.guests.children6to12.veg + 1 } } })) }} className="px-2 py-1 bg-gray-200 rounded">+</button>
+          <div>
+            <div className="flex flex-row items-center justify-center gap-2 w-full">
+              <button type="button" onClick={() => setFormData(prev => ({ ...prev, guests: { ...prev.guests, children6to12: { ...prev.guests.children6to12, veg: Math.max(0, prev.guests.children6to12.veg - 1) } } }))} className="px-3 py-1.5 bg-gray-200 rounded">-</button>
+              <input type="number" value={formData.guests.children6to12.veg} readOnly className="w-12 text-center border rounded-md text-sm md:text-base px-2 py-1.5" />
+              <button type="button" onClick={() => { const t = formData.guests.children6to12.veg + formData.guests.children6to12.nonVeg; if (t >= 99) return; setFormData(prev => ({ ...prev, guests: { ...prev.guests, children6to12: { ...prev.guests.children6to12, veg: prev.guests.children6to12.veg + 1 } } })) }} className="px-3 py-1.5 bg-gray-200 rounded">+</button>
+            </div>
+            <div className="text-xs text-center mt-1 text-green-700 font-medium">(Veg)</div>
           </div>
-          <div className="flex justify-center items-center space-x-1">
-            <button type="button" onClick={() => setFormData(prev => ({ ...prev, guests: { ...prev.guests, children6to12: { ...prev.guests.children6to12, nonVeg: Math.max(0, prev.guests.children6to12.nonVeg - 1) } } }))} className="px-2 py-1 bg-gray-200 rounded">-</button>
-            <input type="number" value={formData.guests.children6to12.nonVeg} readOnly className="w-10 text-center border rounded-md py-1" />
-            <button type="button" onClick={() => { const t = formData.guests.children6to12.veg + formData.guests.children6to12.nonVeg; if (t >= 99) return; setFormData(prev => ({ ...prev, guests: { ...prev.guests, children6to12: { ...prev.guests.children6to12, nonVeg: prev.guests.children6to12.nonVeg + 1 } } })) }} className="px-2 py-1 bg-gray-200 rounded">+</button>
+          <div>
+            <div className="flex flex-row items-center justify-center gap-2 w-full">
+              <button type="button" onClick={() => setFormData(prev => ({ ...prev, guests: { ...prev.guests, children6to12: { ...prev.guests.children6to12, nonVeg: Math.max(0, prev.guests.children6to12.nonVeg - 1) } } }))} className="px-3 py-1.5 bg-gray-200 rounded">-</button>
+              <input type="number" value={formData.guests.children6to12.nonVeg} readOnly className="w-12 text-center border rounded-md text-sm md:text-base px-2 py-1.5" />
+              <button type="button" onClick={() => { const t = formData.guests.children6to12.veg + formData.guests.children6to12.nonVeg; if (t >= 99) return; setFormData(prev => ({ ...prev, guests: { ...prev.guests, children6to12: { ...prev.guests.children6to12, nonVeg: prev.guests.children6to12.nonVeg + 1 } } })) }} className="px-3 py-1.5 bg-gray-200 rounded">+</button>
+            </div>
+            <div className="text-xs text-center mt-1 text-red-700 font-medium">(Non-Veg)</div>
           </div>
-          <div className="text-right">£{(formData.guests.children6to12.veg + formData.guests.children6to12.nonVeg) * 20}</div>
+          <div className="text-right px-3">£{(formData.guests.children6to12.veg + formData.guests.children6to12.nonVeg) * 20}</div>
         </div>
 
         {/* Children below 6 */}
-        <div className="grid grid-cols-4 items-center py-2 border-b text-sm">
-          <div className="text-left flex items-center space-x-1">
+        <div className="grid grid-cols-1 md:grid-cols-4 items-center py-1.5 border-b text-sm">
+          <div className="text-left flex items-center space-x-1 px-3">
             <FaBaby className="text-yellow-500" /><span>Child (below 5Yr) (Free)</span>
           </div>
-          <div className="flex justify-center items-center space-x-1">
-            <button type="button" onClick={() => setFormData(prev => ({ ...prev, guests: { ...prev.guests, childrenBelow6: Math.max(0, prev.guests.childrenBelow6 - 1) } }))} className="px-2 py-1 bg-gray-200 rounded">-</button>
-            <input type="number" name="childrenBelow6" value={formData.guests.childrenBelow6} readOnly className="w-10 text-center border rounded-md py-1" />
-            <button type="button" onClick={() => setFormData(prev => ({ ...prev, guests: { ...prev.guests, childrenBelow6: prev.guests.childrenBelow6 + 1 } }))} className="px-2 py-1 bg-gray-200 rounded">+</button>
+          <div>
+            <div className="flex flex-row items-center justify-center gap-2 w-full">
+              <button
+                type="button"
+                onClick={() =>
+                  setFormData(prev => ({
+                    ...prev,
+                    guests: {
+                      ...prev.guests,
+                      childrenBelow6: {
+                        ...prev.guests.childrenBelow6,
+                        veg: Math.max(0, prev.guests.childrenBelow6.veg - 1),
+                      },
+                    },
+                  }))
+                }
+                className="px-3 py-1.5 bg-gray-200 rounded"
+              >-</button>
+              <input
+                type="number"
+                value={formData.guests.childrenBelow6?.veg ?? 0}
+                readOnly
+                className="w-12 text-center border rounded-md text-sm md:text-base px-2 py-1.5"
+              />
+              <button
+                type="button"
+                onClick={() => {
+                  const t = (formData.guests.childrenBelow6?.veg ?? 0) + (formData.guests.childrenBelow6?.nonVeg ?? 0);
+                  if (t >= 99) return;
+                  setFormData(prev => ({
+                    ...prev,
+                    guests: {
+                      ...prev.guests,
+                      childrenBelow6: {
+                        ...prev.guests.childrenBelow6,
+                        veg: (prev.guests.childrenBelow6?.veg ?? 0) + 1,
+                      },
+                    },
+                  }));
+                }}
+                className="px-3 py-1.5 bg-gray-200 rounded"
+              >+</button>
+            </div>
+            <div className="text-xs text-center mt-1 text-green-700 font-medium">(Veg)</div>
           </div>
-          <div></div>
-          <div className="text-right">Free</div>
+          <div>
+            <div className="flex flex-row items-center justify-center gap-2 w-full">
+              <button
+                type="button"
+                onClick={() =>
+                  setFormData(prev => ({
+                    ...prev,
+                    guests: {
+                      ...prev.guests,
+                      childrenBelow6: {
+                        ...prev.guests.childrenBelow6,
+                        nonVeg: Math.max(0, prev.guests.childrenBelow6.nonVeg - 1),
+                      },
+                    },
+                  }))
+                }
+                className="px-3 py-1.5 bg-gray-200 rounded"
+              >-</button>
+              <input
+                type="number"
+                value={formData.guests.childrenBelow6?.nonVeg ?? 0}
+                readOnly
+                className="w-12 text-center border rounded-md text-sm md:text-base px-2 py-1.5"
+              />
+              <button
+                type="button"
+                onClick={() => {
+                  const t = (formData.guests.childrenBelow6?.veg ?? 0) + (formData.guests.childrenBelow6?.nonVeg ?? 0);
+                  if (t >= 99) return;
+                  setFormData(prev => ({
+                    ...prev,
+                    guests: {
+                      ...prev.guests,
+                      childrenBelow6: {
+                        ...prev.guests.childrenBelow6,
+                        nonVeg: (prev.guests.childrenBelow6?.nonVeg ?? 0) + 1,
+                      },
+                    },
+                  }));
+                }}
+                className="px-3 py-1.5 bg-gray-200 rounded"
+              >+</button>
+            </div>
+            <div className="text-xs text-center mt-1 text-red-700 font-medium">(Non-Veg)</div>
+          </div>
+          <div className="text-right px-3">Free</div>
         </div>
 
         {/* Visiting Parents */}
-        <div className="grid grid-cols-4 items-center py-2 border-b text-sm">
-          <div className="text-left flex items-center space-x-1">
+        <div className="grid grid-cols-1 md:grid-cols-4 items-center py-1.5 border-b text-sm">
+          <div className="text-left flex items-center space-x-1 px-3">
             <FaUsers className="text-purple-600" /><span>Visiting Parents (£25)</span>
           </div>
-          <div className="flex justify-center items-center space-x-1">
-            <button type="button" onClick={() => setFormData(prev => ({ ...prev, guests: { ...prev.guests, visitingParents: { ...prev.guests.visitingParents, veg: Math.max(0, prev.guests.visitingParents.veg - 1) } } }))} className="px-2 py-1 bg-gray-200 rounded">-</button>
-            <input type="number" value={formData.guests.visitingParents.veg} readOnly className="w-10 text-center border rounded-md py-1" />
-            <button type="button" onClick={() => { const t = formData.guests.visitingParents.veg + formData.guests.visitingParents.nonVeg; if (t >= 99) return; setFormData(prev => ({ ...prev, guests: { ...prev.guests, visitingParents: { ...prev.guests.visitingParents, veg: prev.guests.visitingParents.veg + 1 } } })) }} className="px-2 py-1 bg-gray-200 rounded">+</button>
+          <div>
+            <div className="flex flex-row items-center justify-center gap-2 w-full">
+              <button type="button" onClick={() => setFormData(prev => ({ ...prev, guests: { ...prev.guests, visitingParents: { ...prev.guests.visitingParents, veg: Math.max(0, prev.guests.visitingParents.veg - 1) } } }))} className="px-3 py-1.5 bg-gray-200 rounded">-</button>
+              <input type="number" value={formData.guests.visitingParents.veg} readOnly className="w-12 text-center border rounded-md text-sm md:text-base px-2 py-1.5" />
+              <button type="button" onClick={() => { const t = formData.guests.visitingParents.veg + formData.guests.visitingParents.nonVeg; if (t >= 99) return; setFormData(prev => ({ ...prev, guests: { ...prev.guests, visitingParents: { ...prev.guests.visitingParents, veg: prev.guests.visitingParents.veg + 1 } } })) }} className="px-3 py-1.5 bg-gray-200 rounded">+</button>
+            </div>
+            <div className="text-xs text-center mt-1 text-green-700 font-medium">(Veg)</div>
           </div>
-          <div className="flex justify-center items-center space-x-1">
-            <button type="button" onClick={() => setFormData(prev => ({ ...prev, guests: { ...prev.guests, visitingParents: { ...prev.guests.visitingParents, nonVeg: Math.max(0, prev.guests.visitingParents.nonVeg - 1) } } }))} className="px-2 py-1 bg-gray-200 rounded">-</button>
-            <input type="number" value={formData.guests.visitingParents.nonVeg} readOnly className="w-10 text-center border rounded-md py-1" />
-            <button type="button" onClick={() => { const t = formData.guests.visitingParents.veg + formData.guests.visitingParents.nonVeg; if (t >= 99) return; setFormData(prev => ({ ...prev, guests: { ...prev.guests, visitingParents: { ...prev.guests.visitingParents, nonVeg: prev.guests.visitingParents.nonVeg + 1 } } })) }} className="px-2 py-1 bg-gray-200 rounded">+</button>
+          <div>
+            <div className="flex flex-row items-center justify-center gap-2 w-full">
+              <button type="button" onClick={() => setFormData(prev => ({ ...prev, guests: { ...prev.guests, visitingParents: { ...prev.guests.visitingParents, nonVeg: Math.max(0, prev.guests.visitingParents.nonVeg - 1) } } }))} className="px-3 py-1.5 bg-gray-200 rounded">-</button>
+              <input type="number" value={formData.guests.visitingParents.nonVeg} readOnly className="w-12 text-center border rounded-md text-sm md:text-base px-2 py-1.5" />
+              <button type="button" onClick={() => { const t = formData.guests.visitingParents.veg + formData.guests.visitingParents.nonVeg; if (t >= 99) return; setFormData(prev => ({ ...prev, guests: { ...prev.guests, visitingParents: { ...prev.guests.visitingParents, nonVeg: prev.guests.visitingParents.nonVeg + 1 } } })) }} className="px-3 py-1.5 bg-gray-200 rounded">+</button>
+            </div>
+            <div className="text-xs text-center mt-1 text-red-700 font-medium">(Non-Veg)</div>
           </div>
-          <div className="text-right">£{(formData.guests.visitingParents.veg + formData.guests.visitingParents.nonVeg) * 25}</div>
+          <div className="text-right px-3">£{(formData.guests.visitingParents.veg + formData.guests.visitingParents.nonVeg) * 25}</div>
         </div>
 
-        <div className="text-right font-semibold pt-3">
+        <div className="text-right font-semibold pt-3 mt-4 text-lg">
           Total: £{totalSum}
         </div>
       </div>
 
       <button
         type="submit"
-        className="px-4 py-2 bg-green-600 text-white rounded"
+        className="px-4 py-2 bg-green-600 text-white rounded mt-4 text-lg"
         disabled={loading}
       >
         {loading ? 'Redirecting...' : `Pay & Register (£${totalSum})`}
