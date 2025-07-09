@@ -116,9 +116,12 @@ export default function Home() {
             </div>
             <div className="md:w-1/2">
               <iframe
-                className="w-full h-64 md:h-80 rounded shadow-lg"
+                width="100%"
+                height="315"
                 src="https://www.youtube.com/embed/OSQATBlPiAs?autoplay=1&mute=1&controls=1&rel=0&loop=1&playlist=OSQATBlPiAs"
-                title="Nuakhai Event Highlights"
+                title="YouTube video player"
+                frameBorder="0"
+                allow="autoplay; encrypted-media"
                 allowFullScreen
               />
             </div>
