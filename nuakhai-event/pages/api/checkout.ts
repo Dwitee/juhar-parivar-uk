@@ -12,13 +12,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       const { guests } = req.body;
 
-      const { adults = 0, children6to12 = 0, childrenBelow6 = 0, visitingParents = 0 } = guests || {};
+      const adultsCount =
+        parseInt(guests?.adults?.veg || '0') + parseInt(guests?.adults?.nonVeg || '0');
+      const children6to12Count =
+        parseInt(guests?.children6to12?.veg || '0') + parseInt(guests?.children6to12?.nonVeg || '0');
+      const visitingParentsCount =
+        parseInt(guests?.visitingParents?.veg || '0') + parseInt(guests?.visitingParents?.nonVeg || '0');
 
-      // Pricing in pence
       const amount =
-        adults * 4000 +
-        children6to12 * 2000 +
-        visitingParents * 2500; // childrenBelow6 are free
+        adultsCount * 4000 +
+        children6to12Count * 2000 +
+        visitingParentsCount * 2500;
 
       if (amount < 30) {
         throw new Error("The Checkout Session's total amount due must add up to at least £0.30");
