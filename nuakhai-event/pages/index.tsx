@@ -136,7 +136,7 @@ export default function Home() {
               <iframe
                 width="100%"
                 height="315"
-                src="https://www.youtube.com/embed/OSQATBlPiAs?autoplay=1&mute=1&controls=1&rel=0&loop=1&playlist=OSQATBlPiAs"
+                src="https://www.youtube.com/embed/LOvsge6aNVc?autoplay=1&mute=1&controls=1&rel=0&loop=1&playlist=LOvsge6aNVc"
                 title="YouTube video player"
                 frameBorder="0"
                 allow="autoplay; encrypted-media"
@@ -164,24 +164,47 @@ export default function Home() {
         </section>
 
         <footer className="bg-gray-900 text-white py-10 px-4 mt-12 relative z-10">
-          <div className="max-w-5xl mx-auto text-center space-y-6">
-            <p className="text-base">Follow us for frequent updates.</p>
-            <div className="flex justify-center space-x-4">
-              <a href="#" aria-label="Facebook" className="bg-white text-black p-3 rounded-full hover:opacity-80 transition">
-                <FontAwesomeIcon icon={faFacebookF} />
-              </a>
-              <a href="#" aria-label="Twitter" className="bg-white text-black p-3 rounded-full hover:opacity-80 transition">
-                <FontAwesomeIcon icon={faTwitter} />
-              </a>
-              <a href="#" aria-label="Instagram" className="bg-white text-black p-3 rounded-full hover:opacity-80 transition">
-                <FontAwesomeIcon icon={faInstagram} />
-              </a>
-              <a href="#" aria-label="YouTube" className="bg-white text-black p-3 rounded-full hover:opacity-80 transition">
-                <FontAwesomeIcon icon={faYoutube} />
-              </a>
-              <a href="#" aria-label="WhatsApp" className="bg-yellow-400 text-black p-3 rounded-full hover:opacity-80 transition">
-                <FontAwesomeIcon icon={faWhatsapp} />
-              </a>
+          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+            <div>
+              <h3 className="text-xl font-semibold mb-4">Contact Us</h3>
+              <p className="text-sm">
+                Email us at{' '}
+                <a href="mailto:Juharparivaruk@gmail.com" className="text-sambalpuri-bright underline">
+                  Juharparivaruk@gmail.com
+                </a>
+              </p>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold mb-4">Page Navigation</h3>
+              <ul className="space-y-2 text-sm">
+                <li><a href="#" className="hover:text-sambalpuri-bright">About Us</a></li>
+                <li><a href="/events" className="hover:text-sambalpuri-bright">Nuakhai UK 2025</a></li>
+                <li><a href="#" className="hover:text-sambalpuri-bright">News & Media</a></li>
+                <li><a href="#" className="hover:text-sambalpuri-bright">Social Work</a></li>
+                <li><a href="#" className="hover:text-sambalpuri-bright">Contact Us</a></li>
+              </ul>
+            </div>
+            <div>
+              <h3 className="text-xl font-semibold mb-4">Juhar Parivar – UK</h3>
+              <p className="text-sm mb-4">Follow us in various social media platforms for frequent updates.</p>
+              <div className="flex space-x-4">
+                <a href="https://www.facebook.com/NuakhaiParivarUK" aria-label="Facebook" className="bg-white text-black p-3 rounded-full hover:opacity-80 transition">
+                  <FontAwesomeIcon icon={faFacebookF} />
+                </a>
+                <a href="#" aria-label="Twitter" className="bg-white text-black p-3 rounded-full hover:opacity-80 transition">
+                  <FontAwesomeIcon icon={faTwitter} />
+                </a>
+                <a href="#" aria-label="Instagram" className="bg-white text-black p-3 rounded-full hover:opacity-80 transition">
+                  <FontAwesomeIcon icon={faInstagram} />
+                </a>
+                <a href="https://www.youtube.com/@JuharParivarUK" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="bg-white text-black p-3 rounded-full hover:opacity-80 transition">
+                  <FontAwesomeIcon icon={faYoutube} />
+                </a>
+                <a href="#" aria-label="WhatsApp" className="bg-yellow-400 text-black p-3 rounded-full hover:opacity-80 transition">
+                  <FontAwesomeIcon icon={faWhatsapp} />
+                </a>
+              </div>
+              <p className="text-xs text-gray-400 mt-4">Website developed & maintained by: Dwitee </p>
             </div>
             <div className="text-sm mt-4 text-gray-400">
               <p>© 2025 Juhar Parivar UK. All rights reserved.</p>
