@@ -53,17 +53,35 @@ export default function Home() {
         <main className="text-gray-800 text-center flex flex-col items-center justify-center bg-gray-100 pb-24">
         <nav className="bg-gray-700 text-white shadow w-full px-4 py-2 flex justify-between items-center">
           <div className="flex items-center space-x-4">
-            <img src="/logo.jpg" alt="Juhar Parivar" className="h-24" />
+            <img src="/logo.jpg" alt="Juhar Parivar" className="h-16 sm:h-20" />
             <span className="text-lg font-semibold">Juhar Parivar UK</span>
           </div>
-          <div className="space-x-6 text-sm font-medium text-white">
+          <div className="hidden md:flex space-x-6 text-sm font-medium text-white">
             <Link href="/" className="hover:text-sambalpuri-bright transition">Home</Link>
             <Link href="/events" className="hover:text-sambalpuri-bright transition">Nuakhai 2025</Link>
             <Link href="/register" className="hover:text-sambalpuri-bright transition">Register</Link>
             <a href="#gallery" className="hover:text-sambalpuri-bright transition">Gallery</a>
             <a href="#contact" className="hover:text-sambalpuri-bright transition">Contact</a>
           </div>
+          <div className="md:hidden">
+            <button
+              className="text-white focus:outline-none"
+              onClick={() => {
+                const menu = document.getElementById('mobile-menu');
+                if (menu) menu.classList.toggle('hidden');
+              }}
+            >
+              ☰
+            </button>
+          </div>
         </nav>
+        <div id="mobile-menu" className="md:hidden hidden bg-gray-800 text-white text-center py-2 space-y-2">
+          <Link href="/" className="block hover:text-sambalpuri-bright transition">Home</Link>
+          <Link href="/events" className="block hover:text-sambalpuri-bright transition">Nuakhai 2025</Link>
+          <Link href="/register" className="block hover:text-sambalpuri-bright transition">Register</Link>
+          <a href="#gallery" className="block hover:text-sambalpuri-bright transition">Gallery</a>
+          <a href="#contact" className="block hover:text-sambalpuri-bright transition">Contact</a>
+        </div>
 
         <section id="gallery" className="relative h-[70vh] w-full bg-white flex flex-col justify-center items-center text-center">
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent z-10 pointer-events-none" />
