@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { loadStripe } from '@stripe/stripe-js';
+
+const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!);
 
 export default function RegistrationForm() {
   const [formData, setFormData] = useState({
@@ -37,15 +40,25 @@ export default function RegistrationForm() {
     } else {
       setPhoneError('');
     }
-    const res = await fetch('/api/checkout', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(formData),
-    });
-    const data = await res.json();
-    window.location.href = data.url;
+
+    try {
+      const res = await fetch('/api/checkout', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+      // const stripe = await stripePromise;
+      // stripe?.redirectToCheckout({ sessionId: data.id });
+      window.location.href = data.url;
+    } catch (error) {
+      console.error('Checkout error:', error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -105,7 +118,7 @@ export default function RegistrationForm() {
         className="px-4 py-2 bg-green-600 text-white rounded"
         disabled={loading}
       >
-        {loading ? 'Redirecting...' : 'Pay & Register (£5)'}
+        {loading ? 'Redirecting...' : 'Pay & Register (30p)'}
       </button>
     </form>
   );

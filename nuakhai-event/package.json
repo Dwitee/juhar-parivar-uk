@@ -14,7 +14,8 @@
     "aos": "^3.0.0-beta.6",
     "@fortawesome/fontawesome-svg-core": "^6.5.0",
     "@fortawesome/free-brands-svg-icons": "^6.5.0",
-    "@fortawesome/react-fontawesome": "^0.2.0"
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@stripe/stripe-js": "^1.50.0"
   },
   "devDependencies": {
     "@types/react": "19.1.8",
