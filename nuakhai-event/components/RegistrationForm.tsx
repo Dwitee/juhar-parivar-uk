@@ -30,20 +30,10 @@ export default function RegistrationForm() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    if (name === 'childrenBelow6') {
-      setFormData(prev => ({
-        ...prev,
-        guests: {
-          ...prev.guests,
-          childrenBelow6: parseInt(value),
-        },
-      }));
-    } else {
-      setFormData(prev => ({
-        ...prev,
-        [name]: value,
-      }));
-    }
+    setFormData(prev => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   const handleRegister = async () => {
