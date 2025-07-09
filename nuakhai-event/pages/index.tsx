@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useEffect, useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebookF, faTwitter, faInstagram, faYoutube, faWhatsapp } from '@fortawesome/free-brands-svg-icons';
+import { faFacebookF, faTwitter, faInstagram, faYoutube, faWhatsapp, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 export default function Home() {
   const eventDate = new Date('2025-09-06T10:00:00Z').getTime();
@@ -194,14 +194,24 @@ export default function Home() {
           <h3 className="text-center text-xl font-bold text-gray-700 mb-4">Our Sponsors</h3>
           <div className="overflow-hidden relative">
             <div className="flex animate-scroll-left space-x-8 px-4">
-              {[1, 2, 3, 4, 5].map((n) => (
-                <img
-                  key={n}
-                  src={`/sponsors_icon${n}.png`}
-                  alt={`Sponsor ${n}`}
-                  className="h-16 w-auto object-contain"
-                />
-              ))}
+              {[1, 2, 3, 4, 5].map((n) =>
+                n === 1 || n===5 ? (
+                  <a key={n} href="https://potli.co.uk/" target="_blank" rel="noopener noreferrer">
+                    <img
+                      src={`/sponsors_icon${n}.png`}
+                      alt={`Sponsor ${n}`}
+                      className="h-16 w-auto object-contain"
+                    />
+                  </a>
+                ) : (
+                  <img
+                    key={n}
+                    src={`/sponsors_icon${n}.png`}
+                    alt={`Sponsor ${n}`}
+                    className="h-16 w-auto object-contain"
+                  />
+                )
+              )}
             </div>
           </div>
           <style jsx>{`
@@ -260,7 +270,18 @@ export default function Home() {
                   <FontAwesomeIcon icon={faWhatsapp} />
                 </a>
               </div>
-              <p className="text-xs text-gray-400 mt-4">Website developed & maintained by: Dwitee </p>
+              <p className="text-s text-gray-400 mt-4 flex items-center gap-2">
+                Website developed & maintained by: Dwitee
+                <a
+                  href="https://www.linkedin.com/in/dwiteekrishnapanda/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-500 hover:underline"
+                  aria-label="LinkedIn Profile"
+                >
+                  <FontAwesomeIcon icon={faLinkedin} />
+                </a>
+              </p>
             </div>
             <div className="text-sm mt-4 text-gray-400">
               <p>© 2025 Juhar Parivar UK. All rights reserved.</p>
