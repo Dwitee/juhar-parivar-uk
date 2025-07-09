@@ -31,7 +31,7 @@ export default function Home() {
   }, []);
 
   // Gallery images and state moved outside of JSX for proper hook usage
-  const images = [1, 2, 3, 4, 5].map(n => `/gallery${n}.jpg`);
+  const images = [0,1, 2, 3, 4, 5].map(n => `/gallery${n}.jpg`);
   const [currentImage, setCurrentImage] = useState(0);
   useEffect(() => {
     const interval = setInterval(() => {
@@ -214,7 +214,7 @@ export default function Home() {
         </footer>
       </main>
       <div className="fixed bottom-0 w-full bg-sambalpuri-dark text-center py-3 text-lg font-semibold text-sambalpuri-white shadow-inner z-40">
-        Countdown to Nuakhai: <span className="text-sambalpuri-bright">{countdown}</span>
+        Countdown to Nuakhai: <span className="text-white">{countdown}</span>
       </div>
       </div>
 
