@@ -58,7 +58,10 @@ export default function Home() {
           </div>
           <div className="hidden md:flex space-x-6 text-sm font-medium text-white">
             <Link href="/" className="hover:text-sambalpuri-bright transition">Home</Link>
-            <Link href="/events" className="hover:text-sambalpuri-bright transition">Nuakhai 2025</Link>
+            <Link href="/events" className="hover:text-sambalpuri-bright transition text-sambalpuri-bright font-bold relative">
+              Nuakhai Bhetghat 2025
+              <span className="absolute -top-3 -right-10 text-xs animate-pulse text-red-500">Register Now!</span>
+            </Link>
             <Link href="/register" className="hover:text-sambalpuri-bright transition">Register</Link>
             <a href="#gallery" className="hover:text-sambalpuri-bright transition">Gallery</a>
             <a href="#contact" className="hover:text-sambalpuri-bright transition">Contact</a>
@@ -77,12 +80,29 @@ export default function Home() {
         </nav>
         <div id="mobile-menu" className="md:hidden hidden bg-gray-800 text-white text-center py-2 space-y-2">
           <Link href="/" className="block hover:text-sambalpuri-bright transition">Home</Link>
-          <Link href="/events" className="block hover:text-sambalpuri-bright transition">Nuakhai 2025</Link>
+          <Link href="/events" className="block hover:text-sambalpuri-bright transition text-sambalpuri-bright font-bold relative">
+            Nuakhai 2025
+            <span className="ml-2 text-xs animate-pulse text-red-500">Register Now!</span>
+          </Link>
           <Link href="/register" className="block hover:text-sambalpuri-bright transition">Register</Link>
           <a href="#gallery" className="block hover:text-sambalpuri-bright transition">Gallery</a>
           <a href="#contact" className="block hover:text-sambalpuri-bright transition">Contact</a>
         </div>
 
+        <div className="sticky top-16 z-30">
+          <div className="flex justify-center items-center mt-4 mb-6">
+            <Link href="/events">
+              <div className="relative group">
+                <div className="bg-sambalpuri-bright hover:bg-sambalpuri-dark text-white text-xl font-bold py-3 px-6 rounded-full transition transform hover:scale-105 shadow-lg">
+                  Nuakhai Bhetghat 2025
+                </div>
+                <div className="absolute -top-3 -right-4 bg-orange-500 text-white text-xs font-semibold px-2 py-1 rounded-full transform rotate-6 shadow-md">
+                  <span className="animate-pulse">Register Now</span>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </div>
         <section id="gallery" className="relative h-[70vh] w-full bg-white flex flex-col justify-center items-center text-center">
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent z-10 pointer-events-none" />
           <div className="relative z-20 mx-auto w-full max-w-[90vw] h-full max-h-[500px] text-center flex items-center justify-center">
@@ -120,7 +140,7 @@ export default function Home() {
         <section className="bg-gray-50 py-16 px-4 text-gray-800">
           <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
             <div className="md:w-1/2 text-left">
-              <p className="uppercase tracking-widest text-sm text-gray-600">Nuakhai Mahotsav 2024</p>
+              <p className="uppercase tracking-widest text-sm text-gray-600">Nuakhai Bhetghat 2024</p>
               <h2 className="text-3xl font-extrabold mt-2 mb-4">
                 Highlights of <span className="text-sambalpuri-bright">Nuakhai London 2024 </span>
               </h2>
@@ -161,6 +181,36 @@ export default function Home() {
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3363.695723440557!2d-0.360092039183468!3d51.606131662164344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x487614a3a4f35739%3A0x745618daf053e8d5!2sHatch%20End%20High%20School!5e0!3m2!1sen!2suk!4v1752027270997!5m2!1sen!2suk"
             />
           </div>
+        </section>
+
+        {/* Sponsors Banner Section */}
+        <section className="bg-white py-8 border-t border-gray-200">
+          <h3 className="text-center text-xl font-bold text-gray-700 mb-4">Our Sponsors</h3>
+          <div className="overflow-hidden relative">
+            <div className="flex animate-scroll-left space-x-8 px-4">
+              {[1, 2, 3, 4, 5].map((n) => (
+                <img
+                  key={n}
+                  src={`/sponsors_icon${n}.png`}
+                  alt={`Sponsor ${n}`}
+                  className="h-16 w-auto object-contain"
+                />
+              ))}
+            </div>
+          </div>
+          <style jsx>{`
+            @keyframes scroll-left {
+              0% {
+                transform: translateX(0%);
+              }
+              100% {
+                transform: translateX(-50%);
+              }
+            }
+            .animate-scroll-left {
+              animation: scroll-left 20s linear infinite;
+            }
+          `}</style>
         </section>
 
         <footer className="bg-gray-900 text-white py-10 px-4 mt-12 relative z-10">
