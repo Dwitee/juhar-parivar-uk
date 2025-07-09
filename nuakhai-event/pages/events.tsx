@@ -48,7 +48,7 @@ export default function EventsPage() {
         </nav>
 
         <section className="max-w-3xl mx-auto py-12 px-4 text-center">
-          <h2 className="text-3xl font-bold mb-6 text-center">Nuakhai 2025</h2>
+          <h2 className="text-3xl font-bold mb-6 text-center">Nuakhai Bhetghat 2025</h2>
           <p className="text-lg mb-6">
             Celebrate the vibrant festival of Nuakhai with us in London! Join our community in cherishing our traditions,
             enjoying cultural performances, delicious Odia cuisine, and much more.

@@ -142,10 +142,16 @@ export default function Home() {
             <div className="md:w-1/2 text-left">
               <p className="uppercase tracking-widest text-sm text-gray-600">Nuakhai Bhetghat 2024</p>
               <h2 className="text-3xl font-extrabold mt-2 mb-4">
-                Highlights of <span className="text-sambalpuri-bright">Nuakhai London 2024 </span>
+                Highlights of <span className="text-sambalpuri-bright">Nuakhai Bhetghat London 2024 </span>
               </h2>
               <p className="text-sm leading-relaxed text-gray-700 mb-6">
-                Juhar Parivar UK celebrated Nua Khai , did something and then did something and them something , overall it was fun.
+                London, 9th November 2024 — The seventh annual Nuakhai Bhetghat celebration hosted by Juhar Parivar UK took place with great fanfare on 9th November 2024 at Hatch End High School, Pinner, London. Nearly 200 people, including Odiya families from different parts of the UK, attended the event, which was marked by vibrant cultural performances, traditional rituals, and a joyous community spirit.
+              </p>
+              <p className="text-sm leading-relaxed text-gray-700 mb-6">
+                The festivities began with a traditional Samalei Puja, where prayers were offered to Maa Samlei for the well-being of everyone. The prayers were followed by a delicious lunch, catered by Potli, one of London’s renowned Indian restaurants. The meal featured classic Odia dishes such as "Ambila" and "Ghanta Tarkari," specially prepared by the lady members of Juhar Parivar UK, including Sushri Wells, Ena Pattnaik, and Manasi Panigrahi.
+              </p>
+              <p className="text-sm leading-relaxed text-gray-700 mb-6">
+                A highlight of the event was the cultural program, which commenced with the devotional Samlei Bhajan. This was followed by a heartwarming ceremony to honour the elders of the community, as they were felicitated, and their blessings were sought. The chief guest for the occasion, Sri Rohit Pujhari, former Chief Whip of BJD, Ex-Minister for Higher Education, Government of Odisha, and a two-time MLA from Rairakhol, who flew over from India specifically to celebrate with the UK Odiya community.
               </p>
               <div className="flex flex-wrap gap-4">
                 <button className="bg-sambalpuri-bright text-white px-5 py-2 rounded-full hover:bg-sambalpuri-dark transition">Media Gallery</button>
