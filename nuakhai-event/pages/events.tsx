@@ -62,11 +62,24 @@ export default function EventsPage() {
 
         <section className="max-w-3xl mx-auto py-12 px-4 text-center">
           <h2 className="text-3xl font-bold mb-6 text-center">🎉 Event Highlights</h2>
-          <ul className="text-left text-lg list-disc list-inside max-w-xl mx-auto space-y-2">
-            <li>🍛 Traditional Odia food and sweets</li>
-            <li>🎶 Live cultural performances and music</li>
-            <li>🧒👨‍👩‍👧‍👦 Children’s games and family fun</li>
-            <li>🙏 Rituals and community gathering</li>
+          <ul className="text-left text-lg list-none max-w-xl mx-auto space-y-4">
+            <li>
+              📅 <strong>Date:</strong>{' '}
+              <a
+                href="https://www.google.com/calendar/render?action=TEMPLATE&text=Nuakhai+Bhetghat+2025&dates=20250906T120000Z/20250906T220000Z&details=Celebrate+Nuakhai+with+Juhar+Parivar+UK+in+London!&location=Hatch+End+High+School,+Headstone+Lane,+Harrow,+Middlesex,+HA3+6NR"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-sambalpuri-bright underline hover:text-sambalpuri-dark"
+              >
+                Saturday, 6th September 2025
+              </a>
+            </li>
+            <li>⏰ <strong>Time:</strong> 12PM – 10PM</li>
+            <li>🙏 <strong>Traditional Rituals:</strong> Witness the heartfelt offering of the new harvest to deities, followed by the sharing of <em>nua</em> (new rice) among family and friends.</li>
+            <li>🎭 <strong>Cultural Performances:</strong> Enjoy captivating Sambalpuri folk dances, soulful music, and performances that showcase the vibrant spirit of Odisha’s culture.</li>
+            <li>🍱 <strong>Delicious Cuisine:</strong> Savor authentic Odia dishes, including traditional sweets and savory treats, celebrating the flavors of the harvest.</li>
+            <li>🤝 <strong>Community Bonding:</strong> Connect with friends, meet new people, and share in the joy of Nuakhai’s spirit of togetherness and gratitude.</li>
+            <li>🎈 <strong>Fun for All Ages:</strong> Activities for children, interactive stalls, and opportunities to learn about Odisha’s rich cultural heritage.</li>
           </ul>
         </section>
 
