@@ -9,18 +9,33 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method === 'POST') {
     try {
       console.log("Creating Stripe checkout session...");
+
+      const { guests } = req.body;
+
+      const { adults = 0, children6to12 = 0, childrenBelow6 = 0, visitingParents = 0 } = guests || {};
+
+      // Pricing in pence
+      const amount =
+        adults * 4000 +
+        children6to12 * 2000 +
+        visitingParents * 2500; // childrenBelow6 are free
+
+      if (amount < 30) {
+        throw new Error("The Checkout Session's total amount due must add up to at least £0.30");
+      }
+
       const session = await stripe.checkout.sessions.create({
-        payment_method_types: ['card','paypal'],
+        payment_method_types: ['card', 'paypal'],
         line_items: [{
           price_data: {
             currency: 'gbp',
             product_data: { name: 'Nuakhai Registration' },
-            unit_amount: 30, // £0.30
+            unit_amount: amount,
           },
           quantity: 1,
         }],
         mode: 'payment',
-        success_url: `${req.headers.origin}/register?success=true`,
+        success_url: `${req.headers.origin}/success`,
         cancel_url: `${req.headers.origin}/register?canceled=true`,
         billing_address_collection: 'auto',
       });
