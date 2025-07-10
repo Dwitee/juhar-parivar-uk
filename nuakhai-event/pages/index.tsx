@@ -47,7 +47,7 @@ export default function Home() {
     <div className="flex">
       {/* Left Border */}
       <div
-        className="hidden md:block w-12 bg-repeat-y bg-left bg-contain"
+        className="block w-4 md:w-12 bg-repeat-y bg-left bg-contain"
         style={{ backgroundImage: "url('/border.png')" }}
       />
 
@@ -205,7 +205,7 @@ export default function Home() {
 
       {/* Right Border */}
       <div
-        className="hidden md:block w-12 bg-repeat-y bg-right bg-contain"
+        className="block w-4 md:w-12 bg-repeat-y bg-right bg-contain"
         style={{ backgroundImage: "url('/border.png')" }}
       />
     </div>

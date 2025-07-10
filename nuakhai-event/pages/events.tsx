@@ -31,8 +31,21 @@ export default function EventsPage() {
   }, []);
 
   return (
-    <>
-      <main className="text-gray-800 bg-gray-100 min-h-screen text-center px-4 py-12">
+    <div className="relative min-h-screen bg-gray-100 text-gray-800">
+      {/* Left Border */}
+      <div
+        className="absolute top-0 left-0 w-6 h-full bg-repeat-y bg-left bg-contain z-10"
+        style={{ backgroundImage: "url('/border.png')" }}
+      />
+
+      {/* Right Border */}
+      <div
+        className="absolute top-0 right-0 w-6 h-full bg-repeat-y bg-right bg-contain z-10"
+        style={{ backgroundImage: "url('/border.png')" }}
+      />
+
+      {/* Main Content */}
+      <main className="relative z-20 px-6 md:px-12 pt-12">
         <Navbar />
 
         <section className="max-w-3xl mx-auto py-12 px-4 text-center">
@@ -89,6 +102,6 @@ export default function EventsPage() {
           </section>
         <Footer />
       </main>
-    </>
+    </div>
   );
 }

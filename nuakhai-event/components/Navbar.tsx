@@ -12,7 +12,9 @@ export default function Navbar() {
           <Link href="/">
             <img src="/logo.jpg" alt="Juhar Parivar" className="h-16 sm:h-20 cursor-pointer" />
           </Link>
-          <span className="text-lg font-semibold">Juhar Parivar UK</span>
+          <Link href="/">
+            <span className="text-lg font-semibold cursor-pointer">Juhar Parivar UK</span>
+          </Link>
         </div>
         <div className="hidden md:flex space-x-6 text-sm font-medium text-white">
           <Link href="/" className="hover:text-sambalpuri-bright transition">Home</Link>
