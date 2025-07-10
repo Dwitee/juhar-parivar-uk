@@ -52,6 +52,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           metadata: {
             name: req.body.name,
             phone: req.body.phone,
+            email: email,
             adults_veg: guests.adults.veg,
             adults_nonVeg: guests.adults.nonVeg,
             children6to12_veg: guests.children6to12.veg,
