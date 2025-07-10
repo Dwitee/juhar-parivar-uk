@@ -30,7 +30,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
 
       const session = await stripe.checkout.sessions.create({
-        payment_method_types: ['card', 'paypal'],
+        payment_method_types: ['card'],
         line_items: [{
           price_data: {
             currency: 'gbp',
