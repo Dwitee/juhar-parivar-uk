@@ -34,7 +34,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         line_items: [{
           price_data: {
             currency: 'gbp',
-            product_data: { name: 'Nuakhai Registration 2025' },
+            product_data: { name: 'Nuakhai Registration' },
             unit_amount: amount,
           },
           quantity: 1,
