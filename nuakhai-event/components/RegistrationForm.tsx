@@ -184,7 +184,7 @@ export default function RegistrationForm() {
       </div>
 
       <div>
-        <label className="block text-sm md:text-base font-medium text-gray-700 mb-2">Guest Breakdown</label>
+        <label className="block text-sm md:text-base font-bold text-gray-700 mb-2">Guest Breakdown</label>
 
         {/* Adults */}
         <div className="grid grid-cols-1 md:grid-cols-4 items-center py-1.5 border-b text-sm">

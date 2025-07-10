@@ -266,7 +266,7 @@ export default function Home() {
                 <a href="https://www.youtube.com/@JuharParivarUK" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="bg-white text-black p-3 rounded-full hover:opacity-80 transition">
                   <FontAwesomeIcon icon={faYoutube} />
                 </a>
-                <a href="#" aria-label="WhatsApp" className="bg-yellow-400 text-black p-3 rounded-full hover:opacity-80 transition">
+                <a href="https://wa.me/447718909769" aria-label="WhatsApp" className="bg-yellow-400 text-black p-3 rounded-full hover:opacity-80 transition">
                   <FontAwesomeIcon icon={faWhatsapp} />
                 </a>
               </div>
