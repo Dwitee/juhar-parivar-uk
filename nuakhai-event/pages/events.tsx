@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 export default function EventsPage() {
   const [timeLeft, setTimeLeft] = useState('');
@@ -31,21 +33,7 @@ export default function EventsPage() {
   return (
     <>
       <main className="text-gray-800 bg-gray-100 min-h-screen text-center px-4 py-12">
-        <nav className="bg-gray-700 text-white shadow">
-          <div className="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
-            <div className="flex items-center space-x-4">
-              <img src="/logo.jpg" alt="Juhar Parivar" className="h-24" />
-              <span className="text-lg font-semibold">Juhar Parivar UK</span>
-            </div>
-            <div className="space-x-6 text-sm font-medium text-white">
-              <Link href="/" className="hover:text-sambalpuri-bright transition">Home</Link>
-              <Link href="/events" className="hover:text-sambalpuri-bright transition">Nuakhai 2025</Link>
-              <Link href="/register" className="hover:text-sambalpuri-bright transition">Register</Link>
-              <a href="/#gallery" className="hover:text-sambalpuri-bright transition">Gallery</a>
-              <a href="/#contact" className="hover:text-sambalpuri-bright transition">Contact</a>
-            </div>
-          </div>
-        </nav>
+        <Navbar />
 
         <section className="max-w-3xl mx-auto py-12 px-4 text-center">
           <h2 className="text-3xl font-bold mb-6 text-center">Nuakhai Bhetghat 2025</h2>
@@ -99,16 +87,8 @@ export default function EventsPage() {
               />
             </div>
           </section>
-        <footer className="bg-gray-100 text-gray-600 text-sm py-6 px-4 mt-12 relative z-10">
-          <div className="max-w-5xl mx-auto text-center">
-            <p>© 2025 Juhar Parivar UK. All rights reserved.</p>
-            <p>Made with ❤️ to celebrate Nuakhai in London.</p>
-          </div>
-        </footer>
+        <Footer />
       </main>
-      <div className="fixed bottom-0 w-full bg-sambalpuri-dark text-white text-center py-2 px-4 font-medium z-40">
-        Countdown to Nuakhai: <span className="text-sambalpuri-bright">{timeLeft}</span>
-      </div>
     </>
   );
 }

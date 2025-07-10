@@ -2,6 +2,9 @@ import Link from 'next/link';
 import { useEffect, useState, useRef } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookF, faTwitter, faInstagram, faYoutube, faWhatsapp, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import { faPhone } from '@fortawesome/free-solid-svg-icons';
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 export default function Home() {
   const eventDate = new Date('2025-09-06T10:00:00Z').getTime();
@@ -51,43 +54,7 @@ export default function Home() {
       {/* Main content */}
       <div className="flex-1 scroll-smooth">
         <main className="text-gray-800 text-center flex flex-col items-center justify-center bg-gray-100 pb-24">
-        <nav className="bg-gray-700 text-white shadow w-full px-4 py-2 flex justify-between items-center">
-          <div className="flex items-center space-x-4">
-            <img src="/logo.jpg" alt="Juhar Parivar" className="h-16 sm:h-20" />
-            <span className="text-lg font-semibold">Juhar Parivar UK</span>
-          </div>
-          <div className="hidden md:flex space-x-6 text-sm font-medium text-white">
-            <Link href="/" className="hover:text-sambalpuri-bright transition">Home</Link>
-            <Link href="/events" className="hover:text-sambalpuri-bright transition text-sambalpuri-bright font-bold relative">
-              Nuakhai Bhetghat 2025
-              <span className="absolute -top-3 -right-10 text-xs animate-pulse text-red-500">Register Now!</span>
-            </Link>
-            <Link href="/register" className="hover:text-sambalpuri-bright transition">Register</Link>
-            <a href="#gallery" className="hover:text-sambalpuri-bright transition">Gallery</a>
-            <a href="#contact" className="hover:text-sambalpuri-bright transition">Contact</a>
-          </div>
-          <div className="md:hidden">
-            <button
-              className="text-white focus:outline-none"
-              onClick={() => {
-                const menu = document.getElementById('mobile-menu');
-                if (menu) menu.classList.toggle('hidden');
-              }}
-            >
-              ☰
-            </button>
-          </div>
-        </nav>
-        <div id="mobile-menu" className="md:hidden hidden bg-gray-800 text-white text-center py-2 space-y-2">
-          <Link href="/" className="block hover:text-sambalpuri-bright transition">Home</Link>
-          <Link href="/events" className="block hover:text-sambalpuri-bright transition text-sambalpuri-bright font-bold relative">
-            Nuakhai 2025
-            <span className="ml-2 text-xs animate-pulse text-red-500">Register Now!</span>
-          </Link>
-          <Link href="/register" className="block hover:text-sambalpuri-bright transition">Register</Link>
-          <a href="#gallery" className="block hover:text-sambalpuri-bright transition">Gallery</a>
-          <a href="#contact" className="block hover:text-sambalpuri-bright transition">Contact</a>
-        </div>
+        <Navbar />
 
         <div className="sticky top-16 z-30">
           <div className="flex justify-center items-center mt-4 mb-6">
@@ -229,66 +196,7 @@ export default function Home() {
           `}</style>
         </section>
 
-        <footer className="bg-gray-900 text-white py-10 px-4 mt-12 relative z-10">
-          <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
-            <div>
-              <h3 className="text-xl font-semibold mb-4">Contact Us</h3>
-              <p className="text-sm">
-                Email us at{' '}
-                <a href="mailto:Juharparivaruk@gmail.com" className="text-sambalpuri-bright underline">
-                  Juharparivaruk@gmail.com
-                </a>
-              </p>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold mb-4">Page Navigation</h3>
-              <ul className="space-y-2 text-sm">
-                <li><a href="#" className="hover:text-sambalpuri-bright">About Us</a></li>
-                <li><a href="/events" className="hover:text-sambalpuri-bright">Nuakhai UK 2025</a></li>
-                <li><a href="#" className="hover:text-sambalpuri-bright">News & Media</a></li>
-                <li><a href="#" className="hover:text-sambalpuri-bright">Social Work</a></li>
-                <li><a href="#" className="hover:text-sambalpuri-bright">Contact Us</a></li>
-              </ul>
-            </div>
-            <div>
-              <h3 className="text-xl font-semibold mb-4">Juhar Parivar – UK</h3>
-              <p className="text-sm mb-4">Follow us in various social media platforms for frequent updates.</p>
-              <div className="flex space-x-4">
-                <a href="https://www.facebook.com/NuakhaiParivarUK" aria-label="Facebook" className="bg-white text-black p-3 rounded-full hover:opacity-80 transition">
-                  <FontAwesomeIcon icon={faFacebookF} />
-                </a>
-                <a href="#" aria-label="Twitter" className="bg-white text-black p-3 rounded-full hover:opacity-80 transition">
-                  <FontAwesomeIcon icon={faTwitter} />
-                </a>
-                <a href="#" aria-label="Instagram" className="bg-white text-black p-3 rounded-full hover:opacity-80 transition">
-                  <FontAwesomeIcon icon={faInstagram} />
-                </a>
-                <a href="https://www.youtube.com/@JuharParivarUK" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="bg-white text-black p-3 rounded-full hover:opacity-80 transition">
-                  <FontAwesomeIcon icon={faYoutube} />
-                </a>
-                <a href="https://wa.me/447718909769" aria-label="WhatsApp" className="bg-yellow-400 text-black p-3 rounded-full hover:opacity-80 transition">
-                  <FontAwesomeIcon icon={faWhatsapp} />
-                </a>
-              </div>
-              <p className="text-s text-gray-400 mt-4 flex items-center gap-2">
-                Website developed & maintained by: Dwitee
-                <a
-                  href="https://www.linkedin.com/in/dwiteekrishnapanda/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-500 hover:underline"
-                  aria-label="LinkedIn Profile"
-                >
-                  <FontAwesomeIcon icon={faLinkedin} />
-                </a>
-              </p>
-            </div>
-            <div className="text-sm mt-4 text-gray-400">
-              <p>© 2025 Juhar Parivar UK. All rights reserved.</p>
-              <p>Made with ❤️ to celebrate Nuakhai in London.</p>
-            </div>
-          </div>
-        </footer>
+        <Footer />
       </main>
       <div className="fixed bottom-0 w-full bg-sambalpuri-dark text-center py-3 text-lg font-semibold text-sambalpuri-white shadow-inner z-40">
         Countdown to Nuakhai: <span className="text-white">{countdown}</span>
