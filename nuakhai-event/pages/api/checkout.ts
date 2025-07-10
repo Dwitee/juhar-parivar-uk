@@ -10,7 +10,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     try {
       console.log("Creating Stripe checkout session...");
 
-      const { guests } = req.body;
+      const { guests, email } = req.body;
 
       const adultsCount =
         parseInt(guests?.adults?.veg || '0') + parseInt(guests?.adults?.nonVeg || '0');
@@ -42,6 +42,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         success_url: `${req.headers.origin}/success`,
         cancel_url: `${req.headers.origin}/register?canceled=true`,
         billing_address_collection: 'auto',
+        customer_email: email,
       });
       console.log("Stripe session created:", session);
       res.status(200).json({ url: session.url });

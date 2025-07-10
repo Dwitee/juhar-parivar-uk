@@ -16,7 +16,8 @@ export default function RegistrationForm() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '+44',
+    countryCode: '+44',
+    phoneNumber: '',
     guests: {
       adults: { veg: 0, nonVeg: 1 },
       children6to12: { veg: 0, nonVeg: 0 },
@@ -38,6 +39,7 @@ export default function RegistrationForm() {
 
   const handleRegister = async () => {
     setLoading(true);
+    const fullPhone = `${formData.countryCode}${formData.phoneNumber}`;
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(formData.email.trim())) {
       setEmailError('Please enter a valid email address.');
@@ -47,7 +49,7 @@ export default function RegistrationForm() {
       setEmailError('');
     }
     const phoneRegex = /^\+44\s?\d{10}$/;
-    if (!phoneRegex.test(formData.phone.trim())) {
+    if (!phoneRegex.test(fullPhone.trim())) {
       setPhoneError('Please enter a valid UK phone number starting with +44 and 10 digits.');
       setLoading(false);
       return;
@@ -62,7 +64,7 @@ export default function RegistrationForm() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ ...formData, phone: fullPhone }),
       });
 
       const data = await res.json();
@@ -175,12 +177,9 @@ export default function RegistrationForm() {
           <div className="flex space-x-2 items-center w-full">
             <select
               name="countryCode"
-              value={formData.phone.startsWith('+91') ? '+91' : formData.phone.startsWith('+1') ? '+1' : '+44'}
+              value={formData.countryCode}
               onChange={(e) =>
-                setFormData(prev => ({
-                  ...prev,
-                  phone: e.target.value + prev.phone.replace(/^\+\d+/, '')
-                }))
+                setFormData(prev => ({ ...prev, countryCode: e.target.value }))
               }
               className="border rounded-md py-2 px-2 text-sm md:text-base"
             >
@@ -190,12 +189,9 @@ export default function RegistrationForm() {
             <input
               type="tel"
               name="phoneNumber"
-              value={formData.phone.replace(/^\+\d+/, '')}
+              value={formData.phoneNumber}
               onChange={(e) =>
-                setFormData(prev => ({
-                  ...prev,
-                  phone: (prev.phone.startsWith('+91') ? '+91' : '+44') + e.target.value
-                }))
+                setFormData(prev => ({ ...prev, phoneNumber: e.target.value }))
               }
               className="block w-full px-3 py-2 border rounded-md shadow-sm focus:ring focus:ring-indigo-200 text-sm md:text-base"
               required
