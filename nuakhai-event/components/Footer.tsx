@@ -62,15 +62,15 @@ export default function Footer() {
             </a>
           </div>
           <p className="text-s text-gray-400 mt-4 flex items-center gap-2">
-            Website developed & maintained by: Dwitee
+            Website developed & maintained by:
             <a
               href="https://www.linkedin.com/in/dwiteekrishnapanda/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-500 hover:underline"
+              className="text-blue-500 hover:underline flex items-center gap-1"
               aria-label="LinkedIn Profile"
             >
-              <FontAwesomeIcon icon={faLinkedin} />
+              Dwitee <FontAwesomeIcon icon={faLinkedin} />
             </a>
           </p>
         </div>
