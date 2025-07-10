@@ -7,10 +7,11 @@ const stripe = new Stripe(process.env.STRIPE_SECRET_KEY as string, {
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   if (req.method === 'POST') {
+    console.log("Received request body:", req.body);
     try {
       console.log("Creating Stripe checkout session...");
 
-      const { guests, email } = req.body;
+      const { guests, email, name, phone } = req.body;
 
       const adultsCount =
         parseInt(guests?.adults?.veg || '0') + parseInt(guests?.adults?.nonVeg || '0');
@@ -33,7 +34,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         line_items: [{
           price_data: {
             currency: 'gbp',
-            product_data: { name: 'Nuakhai Registration' },
+            product_data: { name: 'Nuakhai Registration 2025' },
             unit_amount: amount,
           },
           quantity: 1,
@@ -43,6 +44,23 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         cancel_url: `${req.headers.origin}/register?canceled=true`,
         billing_address_collection: 'auto',
         customer_email: email,
+        phone_number_collection:{
+          enabled: true
+        },
+        payment_intent_data: {
+          metadata: {
+            name: req.body.name,
+            phone: req.body.phone,
+            adults_veg: guests.adults.veg,
+            adults_nonVeg: guests.adults.nonVeg,
+            children6to12_veg: guests.children6to12.veg,
+            children6to12_nonVeg: guests.children6to12.nonVeg,
+            visitingParents_veg: guests.visitingParents.veg,
+            visitingParents_nonVeg: guests.visitingParents.nonVeg
+          },
+        },
+        
+        
       });
       console.log("Stripe session created:", session);
       res.status(200).json({ url: session.url });
