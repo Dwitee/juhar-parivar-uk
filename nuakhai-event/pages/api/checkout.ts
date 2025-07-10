@@ -48,6 +48,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           enabled: true
         },
         payment_intent_data: {
+          receipt_email: email,
           metadata: {
             name: req.body.name,
             phone: req.body.phone,
