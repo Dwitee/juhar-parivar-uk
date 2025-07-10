@@ -172,14 +172,35 @@ export default function RegistrationForm() {
         <label className="block text-sm md:text-base font-medium text-gray-700">Phone Number</label>
         <div className="mt-1 flex items-center space-x-2">
           <FaMobileAlt className="text-gray-400" />
-          <input
-            type="tel"
-            name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            className="block w-full px-3 py-2 border rounded-md shadow-sm focus:ring focus:ring-indigo-200 text-sm md:text-base px-2 py-1"
-            required
-          />
+          <div className="flex space-x-2 items-center w-full">
+            <select
+              name="countryCode"
+              value={formData.phone.startsWith('+91') ? '+91' : formData.phone.startsWith('+1') ? '+1' : '+44'}
+              onChange={(e) =>
+                setFormData(prev => ({
+                  ...prev,
+                  phone: e.target.value + prev.phone.replace(/^\+\d+/, '')
+                }))
+              }
+              className="border rounded-md py-2 px-2 text-sm md:text-base"
+            >
+              <option value="+44">🇬🇧 +44</option>
+              <option value="+91">🇮🇳 +91</option>
+            </select>
+            <input
+              type="tel"
+              name="phoneNumber"
+              value={formData.phone.replace(/^\+\d+/, '')}
+              onChange={(e) =>
+                setFormData(prev => ({
+                  ...prev,
+                  phone: (prev.phone.startsWith('+91') ? '+91' : '+44') + e.target.value
+                }))
+              }
+              className="block w-full px-3 py-2 border rounded-md shadow-sm focus:ring focus:ring-indigo-200 text-sm md:text-base"
+              required
+            />
+          </div>
         </div>
       </div>
 
