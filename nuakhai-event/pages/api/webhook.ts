@@ -4,10 +4,16 @@ import { buffer } from 'micro';
 import Stripe from 'stripe';
 import bwipjs from 'bwip-js';
 import nodemailer from 'nodemailer';
+import { createClient } from '@supabase/supabase-js';
 
 const stripe = new Stripe(process.env.STRIPE_SECRET_KEY!, {
   apiVersion: '2022-11-15',
 });
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL!,
+  process.env.SUPABASE_SERVICE_ROLE_KEY!
+);
 
 export const config = {
   api: {
@@ -139,6 +145,34 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         ],
       });
       console.log('🎟️ Ticket email sent to:', customerEmail);
+
+      // Save user info to Supabase
+      try {
+        const { error: dbError } = await supabase.from('guests').insert([
+          {
+            name: customerName,
+            email: customerEmail,
+            ticket_id:receiptNumber,
+            phone: metadata.phone || '',
+            amount_paid: paymentIntent.amount_received / 100,
+            donation_amount: metadata.donation_amount ? parseFloat(metadata.donation_amount) : null,
+            checked_in_at: null,
+            adults_veg: parseInt(metadata.adults_veg || '0'),
+            adults_nonVeg: parseInt(metadata.adults_nonVeg || '0'),
+            children6to12_veg: parseInt(metadata.children6to12_veg || '0'),
+            children6to12_nonVeg: parseInt(metadata.children6to12_nonVeg || '0'),
+            visitingParents_veg: parseInt(metadata.visitingParents_veg || '0'),
+            visitingParents_nonVeg: parseInt(metadata.visitingParents_nonVeg || '0'),
+          },
+        ]);
+        if (dbError) {
+          console.error('❌ Error saving to Supabase:', dbError.message);
+        } else {
+          console.log('✅ Guest info saved to Supabase');
+        }
+      } catch (err) {
+        console.error('❌ Exception while saving to Supabase:', err);
+      }
     } catch (emailErr) {
       console.error('❌ Failed to send email:', emailErr);
     }
