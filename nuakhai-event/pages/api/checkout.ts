@@ -24,7 +24,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
       const amount =
         adultsCount * 4000 +
-        children6to12Count * 2000 +
+        children6to12Count * 40 +
         visitingParentsCount * 2500 +
         parseInt(donation || '0')*100;
 
