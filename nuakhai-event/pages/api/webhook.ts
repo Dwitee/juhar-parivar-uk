@@ -129,7 +129,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       await transporter.sendMail({
         from: `Juhar Parivar UK <${process.env.EMAIL_USERNAME}>`,
         to: customerEmail,
-        bcc: ['dwitee@gmail.com', 'ankan.naik@gmail.com'],
+        bcc: process.env.EMAIL_BCC ? process.env.EMAIL_BCC.split(',') : [],
         subject: 'Your Nuakhai Bhetghat 2025 Ticket 🎟️',
         html: htmlContent,
         attachments: [
