@@ -139,7 +139,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
           },
           {
             filename: 'logo_wide.png',
-            path: './public/logo_wide.png',
+            path: `${process.cwd()}/public/logo_wide.png`,
             cid: 'logo',
           },
         ],
