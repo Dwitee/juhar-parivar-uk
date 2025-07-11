@@ -137,11 +137,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             content: barcode,
             cid: 'qrcode',
           },
-          {
-            filename: 'logo_wide.png',
-            path: `${process.cwd()}/public/logo_wide.png`,
-            cid: 'logo',
-          },
         ],
       });
       console.log('🎟️ Ticket email sent to:', customerEmail);
