@@ -98,6 +98,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     const htmlContent = `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 30px; background-color: #f9f9f9; border-radius: 10px;">
         <div style="text-align: center;">
+          <img src="https://juhar-parivar-uk.vercel.app/logo_wide.png" alt="Juhar Parivar UK Logo" style="width: 80%; max-width: 400px; margin-bottom: 10px;" />
           <h2 style="color: #2c3e50;">🎉 Thank You for Registering, ${customerName}!</h2>
         </div>
         <p style="font-size: 16px; color: #333;">We’re excited to welcome you to <strong>Nuakhai Bhetghat 2025</strong>! Please find your ticket details below:</p>
