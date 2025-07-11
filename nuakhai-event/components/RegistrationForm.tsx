@@ -25,6 +25,8 @@ export default function RegistrationForm() {
       visitingParents: { veg: 0, nonVeg: 0 },
     },
   });
+  const [donation, setDonation] = useState(0);
+  const [showDonationTip, setShowDonationTip] = useState(false);
   const [loading, setLoading] = useState(false);
   const [phoneError, setPhoneError] = useState('');
   const [emailError, setEmailError] = useState('');
@@ -134,7 +136,11 @@ export default function RegistrationForm() {
   const totalSum =
     (formData.guests.adults.veg + formData.guests.adults.nonVeg) * prices.adults +
     (formData.guests.children6to12.veg + formData.guests.children6to12.nonVeg) * prices.children6to12 +
-    (formData.guests.visitingParents.veg + formData.guests.visitingParents.nonVeg) * prices.visitingParents;
+    (formData.guests.visitingParents.veg + formData.guests.visitingParents.nonVeg) * prices.visitingParents +
+    donation;
+
+  // Minimum total validation
+  const isTotalValid = totalSum >= 20;
 
   return (
     <form className="mt-4 space-y-4 px-2 sm:px-4 md:px-8" onSubmit={(e) => { e.preventDefault(); handleRegister(); }}>
@@ -373,15 +379,63 @@ export default function RegistrationForm() {
           <div className="text-right px-3">£{(formData.guests.visitingParents.veg + formData.guests.visitingParents.nonVeg) * 25}</div>
         </div>
 
+        {/* Donation */}
+        <div className="grid grid-cols-1 md:grid-cols-4 items-center py-1.5 border-b text-sm">
+          <div className="text-left flex items-center space-x-1 px-3 font-semibold text-gray-700 relative">
+            <span>Voluntary Donation (Charity)</span>
+            <span
+              className="ml-2 cursor-pointer text-gray-500"
+              onClick={() => setShowDonationTip(!showDonationTip)}
+            >
+              ?
+            </span>
+            {showDonationTip && (
+              <div className="absolute top-full mt-1 w-72 bg-yellow-100 text-gray-800 text-sm border border-gray-300 rounded shadow-lg p-2 z-20">
+                “Your kind donation brings hope to those in medical crisis and supports the poor and needy — a small act of giving can become someone’s lifeline.”
+              </div>
+            )}
+          </div>
+          <div className="col-span-3 px-3">
+            <select
+              value={donation}
+              onChange={(e) => setDonation(Number(e.target.value))}
+              className="w-full md:w-1/3 border rounded-md py-2 px-3 text-sm md:text-base"
+            >
+              <option value={0}>£0</option>
+              <option value={10}>£10</option>
+              <option value={20}>£20</option>
+              <option value={30}>£30</option>
+              <option value={40}>£40</option>
+              <option value={50}>£50</option>
+              <option value={60}>£60</option>
+              <option value={70}>£70</option>
+              <option value={80}>£80</option>
+              <option value={90}>£90</option>
+              <option value={100}>£100</option>
+              <option value={120}>£120</option>
+              <option value={200}>£200</option>
+              <option value={300}>£300</option>
+              <option value={400}>£400</option>
+              <option value={500}>£500</option>
+            </select>
+          </div>
+        </div>
+
         <div className="text-right font-semibold pt-3 mt-4 text-lg">
           Total: £{totalSum}
         </div>
+        {!isTotalValid && (
+          <div className="text-red-600 text-right text-sm mt-2">
+            Minimum payable amount is £20 to proceed.
+          </div>
+        )}
       </div>
 
       <button
         type="submit"
-        className="px-4 py-2 bg-green-600 text-white rounded mt-4 text-lg"
-        disabled={loading}
+        className="px-4 py-2 bg-green-600 text-white rounded mt-4 text-lg disabled:opacity-50 disabled:cursor-not-allowed"
+        disabled={loading || !isTotalValid}
+        title={!isTotalValid ? 'Minimum amount must be £20' : ''}
       >
         {loading ? 'Redirecting...' : `Pay & Register (£${totalSum})`}
       </button>
