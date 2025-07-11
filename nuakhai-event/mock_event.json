@@ -1,0 +1,17 @@
+{
+    "id": "evt_test_checkout_completed",
+    "object": "event",
+    "type": "checkout.session.completed",
+    "data": {
+      "object": {
+        "id": "cs_test_123",
+        "object": "checkout.session",
+        "customer_email": "dwitee.panda@gmail.com",
+        "metadata": {
+          "name": "DwiteeK",
+          "guests": "Adults:2, Veg:1, NonVeg:1"
+        },
+        "payment_intent": "pi_test_123"
+      }
+    }
+  }

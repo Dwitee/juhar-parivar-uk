@@ -66,7 +66,7 @@ export default function RegistrationForm() {
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ ...formData, phone: fullPhone }),
+        body: JSON.stringify({ ...formData, phone: fullPhone, donation }),
       });
 
       const data = await res.json();

@@ -11,7 +11,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     try {
       console.log("Creating Stripe checkout session...");
 
-      const { guests, email, name, phone } = req.body;
+      const { guests, email, name, phone, donation } = req.body;
 
       const adultsCount =
         parseInt(guests?.adults?.veg || '0') + parseInt(guests?.adults?.nonVeg || '0');
@@ -20,10 +20,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       const visitingParentsCount =
         parseInt(guests?.visitingParents?.veg || '0') + parseInt(guests?.visitingParents?.nonVeg || '0');
 
+      console.log("Donation amount received:", donation);
+
       const amount =
         adultsCount * 4000 +
         children6to12Count * 2000 +
-        visitingParentsCount * 2500;
+        visitingParentsCount * 2500 +
+        parseInt(donation || '0')*100;
 
       if (amount < 30) {
         throw new Error("The Checkout Session's total amount due must add up to at least £0.30");
@@ -58,7 +61,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             children6to12_veg: guests.children6to12.veg,
             children6to12_nonVeg: guests.children6to12.nonVeg,
             visitingParents_veg: guests.visitingParents.veg,
-            visitingParents_nonVeg: guests.visitingParents.nonVeg
+            visitingParents_nonVeg: guests.visitingParents.nonVeg,
+            donation_amount: donation
           },
         },
         
