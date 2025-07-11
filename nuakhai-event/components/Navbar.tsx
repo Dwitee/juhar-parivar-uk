@@ -23,6 +23,7 @@ export default function Navbar() {
             <span className="absolute -top-3 -right-10 text-xs animate-pulse text-red-500">Register Now!</span>
           </Link>
           <Link href="/register" className="hover:text-sambalpuri-bright transition">Register</Link>
+          <a href="#about" className="hover:text-sambalpuri-bright transition">About Us</a>
           <a href="#gallery" className="hover:text-sambalpuri-bright transition">Gallery</a>
           <a href="#contact" className="hover:text-sambalpuri-bright transition">Contact</a>
         </div>
@@ -44,6 +45,7 @@ export default function Navbar() {
             <span className="ml-2 text-xs animate-pulse text-red-500">Register Now!</span>
           </Link>
           <Link href="/register" className="block hover:text-sambalpuri-bright transition">Register</Link>
+          <a href="/#about" className="block hover:text-sambalpuri-bright transition">About Us</a>
           <a href="#gallery" className="block hover:text-sambalpuri-bright transition">Gallery</a>
           <a href="#contact" className="block hover:text-sambalpuri-bright transition">Contact</a>
         </div>

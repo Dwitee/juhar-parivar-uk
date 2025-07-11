@@ -137,6 +137,38 @@ export default function Home() {
               />
             </div>
           </div>
+
+        </section>
+
+        {/* About Us Section */}
+        <section id="about" className="bg-white py-16 px-4 text-gray-800">
+          <div className="max-w-6xl mx-auto text-left">
+            <h2 className="text-3xl font-extrabold mb-6 text-sambalpuri-bright">About Us</h2>
+            <p className="mb-4 text-lg">Welcome to <strong>Juhar Parivar UK</strong>!</p>
+            <p className="mb-4">
+              Juhar Parivar UK is a vibrant social and cultural organisation based in Harrow, United Kingdom, dedicated to preserving and promoting the rich cultural heritage and traditions of Western Odisha.
+            </p>
+            <p className="mb-4">
+              Founded in 2015 by a group of passionate Odia individuals, our community has steadily grown into a strong and closely-knit family of over 250 members. What started as a small gathering of like-minded families has now become an annual cultural tradition for the Odia diaspora in the UK.
+            </p>
+            <h3 className="text-2xl font-semibold text-sambalpuri-bright mt-8 mb-2">Our Signature Event: Nuakhai Bhetghat</h3>
+            <p className="mb-4">
+              At the heart of our community celebrations is Nuakhai, the traditional agrarian festival observed primarily in Western Odisha and Chhattisgarh, India. Celebrated after Ganesh Chaturthi — typically in August or September — Nuakhai marks the welcoming of the new rice harvest, and is a time for gratitude, family bonding, and cultural celebration.
+            </p>
+            <p className="mb-4">
+              Our flagship event, the Nuakhai Bhetghat, is held annually at Hatch End High School in Pinner, London. It brings together Odia families from across the UK to relive the customs and spirit of our homeland. The celebration is known for its warmth, color, and authenticity.
+            </p>
+            <h3 className="text-2xl font-semibold text-sambalpuri-bright mt-8 mb-2">Our Mission</h3>
+            <ul className="list-disc list-inside mb-4 pl-4 text-gray-700">
+              <li>Celebrating and preserving the traditions of Western Odisha</li>
+              <li>Building a strong support network for Odia families in the UK</li>
+              <li>Passing on cultural values to the younger generation</li>
+              <li>Engaging in philanthropic activities both in the UK and Odisha</li>
+            </ul>
+            <p className="mt-6">
+              We invite you to join us on this journey of cultural celebration, community bonding, and meaningful contribution.
+            </p>
+          </div>
         </section>
 
         <section id="contact" className="bg-gray-100 py-12 text-center w-full">

@@ -76,11 +76,14 @@ export default function EventsPage() {
               </a>
             </li>
             <li>⏰ <strong>Time:</strong> 12PM – 10PM</li>
-            <li>🙏 <strong>Traditional Rituals:</strong> Witness the heartfelt offering of the new harvest to deities, followed by the sharing of <em>nua</em> (new rice) among family and friends.</li>
-            <li>🎭 <strong>Cultural Performances:</strong> Enjoy captivating Sambalpuri folk dances, soulful music, and performances that showcase the vibrant spirit of Odisha’s culture.</li>
-            <li>🍱 <strong>Delicious Cuisine:</strong> Savor authentic Odia dishes, including traditional sweets and savory treats, celebrating the flavors of the harvest.</li>
-            <li>🤝 <strong>Community Bonding:</strong> Connect with friends, meet new people, and share in the joy of Nuakhai’s spirit of togetherness and gratitude.</li>
-            <li>🎈 <strong>Fun for All Ages:</strong> Activities for children, interactive stalls, and opportunities to learn about Odisha’s rich cultural heritage.</li>
+            <li>🪔 <strong>Samalei Puja:</strong> Begin the day with a sacred offering to Maa Samlei for blessings and well-being.</li>
+            <li>🍛 <strong>Community Feast:</strong> Relish authentic Odia dishes like Ambila & Ghanta Tarkari, lovingly catered by Potli restaurant.</li>
+            <li>💃 <strong>Sambalpuri Dance:</strong> Traditional folk dance performances showcasing the rich rhythm of Western Odisha.</li>
+            <li>🎶 <strong>Folk Music:</strong> Experience soul-stirring melodies rooted in our cultural heritage.</li>
+            <li>🧣 <strong>Sambalpuri Handloom:</strong> A vibrant showcase of Odisha’s iconic weaves and attire.</li>
+            <li>🌟 <strong>Community Talent:</strong> Performances by children, youth, and elders — a true celebration for all generations.</li>
+            <li>🤝 <strong>Community Bonding:</strong> Connect with fellow Odias and share in the spirit of togetherness.</li>
+            <li>🌾 <strong>Celebrate Identity:</strong> Nuakhai Bhetghat is more than a festival — it's a heartfelt expression of culture, unity, and belonging.</li>
           </ul>
         </section>
 

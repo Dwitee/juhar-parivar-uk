@@ -34,7 +34,7 @@ export default function Footer() {
         <div>
           <h3 className="text-xl font-semibold mb-4">Page Navigation</h3>
           <ul className="space-y-2 text-sm">
-            <li><a href="#" className="hover:text-sambalpuri-bright">About Us</a></li>
+            <li><a href="/#about" className="hover:text-sambalpuri-bright">About Us</a></li>
             <li><a href="/events" className="hover:text-sambalpuri-bright">Nuakhai UK 2025</a></li>
             <li><a href="#" className="hover:text-sambalpuri-bright">News & Media</a></li>
             <li><a href="#" className="hover:text-sambalpuri-bright">Social Work</a></li>
