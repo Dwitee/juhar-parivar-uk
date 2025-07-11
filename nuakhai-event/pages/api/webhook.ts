@@ -40,29 +40,74 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   }
 
   if (event.type === 'checkout.session.completed') {
-    const session = event.data.object as Stripe.Checkout.Session;
-    console.log('🎉 Checkout session completed:', session.id);
-    console.log('📩 Sending ticket email to:', session.customer_email);
-    const metadata = session.metadata || {};
+    console.log('✅ checkout.session.completed received. Skipping to avoid duplicate email.');
+    return res.status(200).json({ received: true });
+  }
+
+  // Handle payment_intent.succeeded event for direct PaymentIntent payments
+  if (event.type === 'payment_intent.succeeded') {
+    const paymentIntent = event.data.object as Stripe.PaymentIntent;
+    const metadata = paymentIntent.metadata || {};
+    const customerEmail = paymentIntent.receipt_email;
+    const customerName = metadata.name || 'Guest';
+    const receiptNumber = paymentIntent.id || 'UNKNOWN';
+
+    if (!customerEmail) {
+      console.error('❌ No customer email provided in payment_intent.succeeded');
+      return res.status(200).json({ received: true });
+    }
+
+    console.log('📩 Sending ticket email to:', customerEmail);
     console.log('🧾 Metadata received:', metadata);
 
-    const receiptNumber = session.payment_intent?.toString() || 'UNKNOWN';
+    const guestDetails = `
+      Adults - Veg: ${metadata.adults_veg || 0}, Non-Veg: ${metadata.adults_nonVeg || 0}<br/>
+      Children (6-12) - Veg: ${metadata.children6to12_veg || 0}, Non-Veg: ${metadata.children6to12_nonVeg || 0}<br/>
+      Visiting Parents - Veg: ${metadata.visitingParents_veg || 0}, Non-Veg: ${metadata.visitingParents_nonVeg || 0}
+    `;
 
     // Generate QR code as PNG buffer
+    const qrPayload = JSON.stringify({
+      ticketId: receiptNumber,
+      name: customerName,
+      email: customerEmail,
+      guests: {
+        adults_veg: metadata.adults_veg || 0,
+        adults_nonVeg: metadata.adults_nonVeg || 0,
+        children6to12_veg: metadata.children6to12_veg || 0,
+        children6to12_nonVeg: metadata.children6to12_nonVeg || 0,
+        visitingParents_veg: metadata.visitingParents_veg || 0,
+        visitingParents_nonVeg: metadata.visitingParents_nonVeg || 0,
+      },
+      event: 'Nuakhai Bhetghat 2025',
+    });
+
     const barcode = await bwipjs.toBuffer({
       bcid: 'qrcode',
-      text: receiptNumber,
+      text: qrPayload,
       scale: 5,
       includetext: false,
     });
 
     const htmlContent = `
-      <div style="font-family: Arial, sans-serif;">
-        <h2>Thank you for registering, ${metadata.name}!</h2>
-        <p>Your ticket number: <strong>${receiptNumber}</strong></p>
-        <p>Show this QR code at the entrance:</p>
-        <img src="cid:qrcode" style="margin-top: 10px;"/>
-        <p style="margin-top: 20px;">We look forward to seeing you at Nuakhai Bhetghat 2025 🎉</p>
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: auto; padding: 30px; background-color: #f9f9f9; border-radius: 10px;">
+        <div style="text-align: center;">
+          <img src="cid:logo" alt="Juhar Parivar UK Logo" style="height: 80px; margin-bottom: 20px;" />
+          <h2 style="color: #2c3e50;">🎉 Thank You for Registering, ${customerName}!</h2>
+        </div>
+        <p style="font-size: 16px; color: #333;">We’re excited to welcome you to <strong>Nuakhai Bhetghat 2025</strong>! Please find your ticket details below:</p>
+        <div style="background-color: #ffffff; padding: 20px; border-radius: 8px; margin-top: 20px;">
+          <p><strong>🎟️ Ticket Number:</strong> ${receiptNumber}</p>
+          <p><strong>👥 Guest Details:</strong></p>
+          <div style="font-size: 15px; line-height: 1.5; color: #444;">
+            ${guestDetails}
+          </div>
+          <p style="margin-top: 20px;"><strong>📲 Show this QR code at the entrance:</strong></p>
+          <div style="text-align: center;">
+            <img src="cid:qrcode" alt="QR Code" style="margin-top: 10px; height: 180px;" />
+          </div>
+        </div>
+        <p style="margin-top: 30px; font-size: 15px; color: #555;">We look forward to celebrating with you!<br/>🙏 <em>Juhar Parivar UK Team</em></p>
       </div>
     `;
 
@@ -74,21 +119,31 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       },
     });
 
-    await transporter.sendMail({
-      from: `Juhar Parivar UK <${process.env.EMAIL_USERNAME}>`,
-      to: session.customer_email,
-      subject: 'Your Nuakhai Bhetghat 2025 Ticket 🎟️',
-      html: htmlContent,
-      attachments: [
-        {
-          filename: 'qrcode.png',
-          content: barcode,
-          cid: 'qrcode',
-        },
-      ],
-    });
+    try {
+      await transporter.sendMail({
+        from: `Juhar Parivar UK <${process.env.EMAIL_USERNAME}>`,
+        to: customerEmail,
+        subject: 'Your Nuakhai Bhetghat 2025 Ticket 🎟️',
+        html: htmlContent,
+        attachments: [
+          {
+            filename: 'qrcode.png',
+            content: barcode,
+            cid: 'qrcode',
+          },
+          {
+            filename: 'logo_wide.png',
+            path: './public/logo_wide.png',
+            cid: 'logo',
+          },
+        ],
+      });
+      console.log('🎟️ Ticket email sent to:', customerEmail);
+    } catch (emailErr) {
+      console.error('❌ Failed to send email:', emailErr);
+    }
 
-    console.log('🎟️ Ticket email sent to:', session.customer_email);
+    return res.status(200).json({ received: true });
   }
 
   res.status(200).json({ received: true });
