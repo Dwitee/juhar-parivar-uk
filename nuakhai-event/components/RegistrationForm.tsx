@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { loadStripe } from '@stripe/stripe-js';
 import {
   FaUserCircle,
@@ -142,8 +142,26 @@ export default function RegistrationForm() {
   // Minimum total validation
   const isTotalValid = totalSum >= 20;
 
+  // Close donation tip on document click
+  useEffect(() => {
+    const handleClickOutside = () => {
+      if (showDonationTip) setShowDonationTip(false);
+    };
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [showDonationTip]);
+
+  // Automatically dismiss donation tip after 5 seconds when shown
+  useEffect(() => {
+    if (showDonationTip) {
+      const timer = setTimeout(() => setShowDonationTip(false), 5000);
+      return () => clearTimeout(timer);
+    }
+  }, [showDonationTip]);
+
   return (
-    <form className="mt-4 space-y-4 px-2 sm:px-4 md:px-8" onSubmit={(e) => { e.preventDefault(); handleRegister(); }}>
+    <div onClick={() => showDonationTip && setShowDonationTip(false)}>
+      <form className="mt-4 space-y-4 px-2 sm:px-4 md:px-8" onSubmit={(e) => { e.preventDefault(); handleRegister(); }}>
       <div>
         <label className="block text-sm md:text-base font-medium text-gray-700">Name</label>
         <div className="mt-1 flex items-center space-x-2">
@@ -382,18 +400,30 @@ export default function RegistrationForm() {
         {/* Donation */}
         <div className="grid grid-cols-1 md:grid-cols-4 items-center py-1.5 border-b text-sm">
           <div className="text-left flex items-center space-x-1 px-3 font-semibold text-gray-700 relative">
-            <span>Voluntary Donation (Charity)</span>
-            <span
-              className="ml-2 cursor-pointer text-gray-500"
-              onClick={() => setShowDonationTip(!showDonationTip)}
-            >
-              ?
-            </span>
+            {/* Tooltip above text */}
             {showDonationTip && (
-              <div className="absolute top-full mt-1 w-72 bg-yellow-100 text-gray-800 text-sm border border-gray-300 rounded shadow-lg p-2 z-20">
+              <div className="absolute bottom-full mb-2 w-72 bg-yellow-100 text-gray-800 text-sm border border-gray-300 rounded shadow-lg p-2 z-20">
                 “Your kind donation brings hope to those in medical crisis and supports the poor and needy — a small act of giving can become someone’s lifeline.”
               </div>
             )}
+            <span
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowDonationTip(!showDonationTip);
+              }}
+              className="cursor-pointer"
+            >
+              Voluntary Donation (Charity)
+            </span>
+            <span
+              className="ml-2 cursor-pointer text-gray-500"
+              onClick={(e) => {
+                e.stopPropagation();
+                setShowDonationTip(!showDonationTip);
+              }}
+            >
+              ?
+            </span>
           </div>
           <div className="col-span-3 px-3">
             <select
@@ -440,5 +470,6 @@ export default function RegistrationForm() {
         {loading ? 'Redirecting...' : `Pay & Register (£${totalSum})`}
       </button>
     </form>
+    </div>
   );
 }

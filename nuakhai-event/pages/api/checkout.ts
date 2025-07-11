@@ -41,7 +41,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         }],
         mode: 'payment',
         success_url: `${req.headers.origin}/success`,
-        cancel_url: `${req.headers.origin}/register?canceled=true`,
+        cancel_url: `${req.headers.origin}/failure`,
         billing_address_collection: 'auto',
         customer_email: email,
         phone_number_collection:{

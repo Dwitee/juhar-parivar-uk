@@ -144,7 +144,7 @@ export default function Home() {
         <section id="about" className="bg-white py-16 px-4 text-gray-800">
           <div className="max-w-6xl mx-auto text-left">
             <h2 className="text-3xl font-extrabold mb-6 text-sambalpuri-bright">About Us</h2>
-            <p className="mb-4 text-lg">Welcome to <strong>Juhar Parivar UK</strong>!</p>
+            <p className="mb-4 text-lg">Welcome to <strong>Juhar Parivar UK 🙏</strong></p>
             <p className="mb-4">
               Juhar Parivar UK is a vibrant social and cultural organisation based in Harrow, United Kingdom, dedicated to preserving and promoting the rich cultural heritage and traditions of Western Odisha.
             </p>
@@ -156,7 +156,7 @@ export default function Home() {
               At the heart of our community celebrations is Nuakhai, the traditional agrarian festival observed primarily in Western Odisha and Chhattisgarh, India. Celebrated after Ganesh Chaturthi — typically in August or September — Nuakhai marks the welcoming of the new rice harvest, and is a time for gratitude, family bonding, and cultural celebration.
             </p>
             <p className="mb-4">
-              Our flagship event, the Nuakhai Bhetghat, is held annually at Hatch End High School in Pinner, London. It brings together Odia families from across the UK to relive the customs and spirit of our homeland. The celebration is known for its warmth, color, and authenticity.
+              Our flagship event, the Nuakhai Bhetghat, is held annually in London. It brings together Odia families from across the UK to relive the customs and spirit of our homeland. The celebration is known for its warmth, color, and authenticity.
             </p>
             <h3 className="text-2xl font-semibold text-sambalpuri-bright mt-8 mb-2">Our Mission</h3>
             <ul className="list-disc list-inside mb-4 pl-4 text-gray-700">
