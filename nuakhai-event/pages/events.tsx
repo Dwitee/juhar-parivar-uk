@@ -47,6 +47,13 @@ export default function EventsPage() {
       {/* Main Content */}
       <main className="relative z-20 px-6 md:px-12 pt-12">
         <Navbar />
+        <div className="sticky top-4 z-50 bg-white py-2">
+          <Link href="/register">
+            <button className="mx-auto block bg-gradient-to-r from-sambalpuri-bright to-sambalpuri-dark text-white px-6 py-3 rounded-full shadow-lg animate-pulse hover:animate-none hover:scale-105 transition-transform duration-300">
+              Register Now
+            </button>
+          </Link>
+        </div>
 
         <section className="max-w-3xl mx-auto py-12 px-4 text-center">
           <h2 className="text-3xl font-bold mb-6 text-center">Nuakhai Bhetghat 2025</h2>
@@ -54,12 +61,9 @@ export default function EventsPage() {
             Celebrate the vibrant festival of Nuakhai with us in London! Join our community in cherishing our traditions,
             enjoying cultural performances, delicious Odia cuisine, and much more.
           </p>
-          <Link href="/register">
-            <button className="bg-sambalpuri-bright text-white px-6 py-2 rounded-full hover:bg-sambalpuri-dark transition">
-              Register Now
-            </button>
-          </Link>
         </section>
+
+  
 
         <section className="max-w-3xl mx-auto py-12 px-4 text-center">
           <h2 className="text-3xl font-bold mb-6 text-center">🎉 Event Highlights</h2>
@@ -103,6 +107,23 @@ export default function EventsPage() {
               />
             </div>
           </section>
+                {/* Participate in Cultural Programmes */}
+        <section className="max-w-3xl mx-auto py-12 px-4 text-center">
+          <h2 className="text-3xl font-bold mb-6 text-sambalpuri-bright">🎉 Participate in Cultural Programmes</h2>
+          <p className="text-lg text-gray-700">
+            🌟 <span className="font-semibold">Ready to showcase your talent?</span> 🎭 Join our cultural extravaganza and light up the stage!
+          </p>
+          <div className="mt-6">
+            <a
+              href="https://tinyurl.com/nkuk2025"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block bg-gray-400 text-white px-6 py-3 rounded-full hover:bg-gray-500 transition duration-300"
+            >
+              Fill the Form Now
+            </a>
+          </div>
+        </section>
         <Footer />
       </main>
     </div>

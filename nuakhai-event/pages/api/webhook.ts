@@ -113,6 +113,9 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
             <img src="cid:qrcode" alt="QR Code" style="margin-top: 10px; height: 180px;" />
           </div>
         </div>
+        <p style="margin-top: 20px; font-size: 15px; color: #333;">
+          To participate in cultural events fill this form <a href="https://tinyurl.com/nkuk2025" target="_blank" rel="noopener noreferrer">https://tinyurl.com/nkuk2025</a>
+        </p>
         <p style="margin-top: 30px; font-size: 15px; color: #555;">We look forward to celebrating with you!<br/>🙏 <em>Juhar Parivar UK Team</em></p>
       </div>
     `;
