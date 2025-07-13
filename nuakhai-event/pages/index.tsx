@@ -96,7 +96,7 @@ export default function Home() {
     {
       profileUrl: 'https://www.linkedin.com/in/satyendupattnaik/',
       photoUrl: '/coremembers/satyendupattnaik.jpg',
-      name: 'Uttam Tripathy',
+      name: 'Satyendu Pattnaik',
     },
     {
       profileUrl: 'https://www.linkedin.com/in/vijaymeher/',
