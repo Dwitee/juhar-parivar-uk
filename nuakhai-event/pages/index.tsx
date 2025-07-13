@@ -70,6 +70,41 @@ export default function Home() {
     return () => clearInterval(sponsorTimer);
   }, []);
 
+  // Core members carousel
+  const coreRef = useRef<HTMLDivElement>(null);
+  const coreMembers = [
+    {
+      profileUrl: 'https://www.linkedin.com/in/ankannaik/',
+      photoUrl: '/coremembers/ankannaik.jpg',
+      name: 'Ankan Naik',
+    },
+    {
+      profileUrl: 'https://www.linkedin.com/in/srirampanda/',
+      photoUrl: '/coremembers/srirampanda.jpg',
+      name: 'Sriram Panda',
+    },
+    {
+      profileUrl: 'https://www.linkedin.com/in/uttam-tripathy-05808534/',
+      photoUrl: '/coremembers/uttam-tripathy.jpg',
+      name: 'Uttam Tripathy',
+    },
+  ];
+  useEffect(() => {
+    const coreTimer = setInterval(() => {
+      const container = coreRef.current;
+      if (container) {
+        const { scrollLeft, clientWidth, scrollWidth } = container;
+        const maxScrollLeft = scrollWidth - clientWidth;
+        const nextScrollLeft = scrollLeft + clientWidth;
+        container.scrollTo({
+          left: nextScrollLeft > maxScrollLeft ? 0 : nextScrollLeft,
+          behavior: 'smooth',
+        });
+      }
+    }, 2000);
+    return () => clearInterval(coreTimer);
+  }, []);
+
   return (
     <div className="flex">
       {/* Left Border */}
@@ -257,6 +292,34 @@ export default function Home() {
               Want to be a sponsor? Click here to contact.
             </a>
           </p>
+        </section>
+
+        {/* Our Core Members Section */}
+        <section className="bg-white py-8 border-t border-gray-200">
+          <h3 className="text-center text-xl font-bold text-gray-700 mb-4">Our Core Members</h3>
+          <div
+            ref={coreRef}
+            className="w-full overflow-x-scroll overflow-y-hidden scroll-smooth touch-pan-x snap-x snap-mandatory -webkit-overflow-scrolling-touch"
+          >
+            <div className="flex flex-nowrap gap-0 sm:gap-12 px-0 sm:px-4">
+              {coreMembers.map((member, idx) => (
+                <a
+                  key={member.profileUrl}
+                  href={member.profileUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex-shrink-0 w-full sm:w-auto flex flex-col items-center justify-center h-32 sm:h-24 snap-start"
+                >
+                  <img
+                    src={member.photoUrl}
+                    alt={`Core member ${idx + 1}`}
+                    className="h-24 w-auto object-contain transition duration-500 ease-in-out rounded-full"
+                  />
+                  <span className="mt-2 text-sm font-medium text-gray-700">{member.name}</span>
+                </a>
+              ))}
+            </div>
+          </div>
         </section>
 
         <Footer />
