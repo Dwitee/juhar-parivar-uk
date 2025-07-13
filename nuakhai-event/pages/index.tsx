@@ -108,7 +108,11 @@ export default function Home() {
       photoUrl: '/coremembers/alok.png',
       name: 'Alok Naik',
     },
-    
+    {
+      profileUrl: 'https://www.linkedin.com/in/sushri-wells-aa5389bb/',
+      photoUrl: '/coremembers/sushriwells.png',
+      name: 'Sushri Wells',
+    },
   ];
   useEffect(() => {
     const coreTimer = setInterval(() => {
@@ -127,19 +131,23 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="flex">
-      {/* Left Border */}
+    <div className="relative min-h-screen bg-gray-100 text-gray-800">
+    {/* Left Border */}
       <div
-        className="block w-4 md:w-12 bg-repeat-y bg-left bg-contain"
+        className="absolute top-0 left-0 w-6 h-full bg-repeat-y bg-left bg-contain z-10"
         style={{ backgroundImage: "url('/border.png')" }}
       />
 
+      {/* Right Border */}
+      <div
+        className="absolute top-0 right-0 w-6 h-full bg-repeat-y bg-right bg-contain z-10"
+        style={{ backgroundImage: "url('/border.png')" }}
+      /> 
       {/* Main content */}
-      <div className="flex-1 scroll-smooth">
-        <main className="text-gray-800 text-center flex flex-col items-center justify-center bg-gray-100 pb-24">
+        <main className="relative z-20 px-6 md:px-12 pt-12">
         <Navbar />
 
-        <div className="sticky top-16 z-30">
+        <div className="sticky top-16 z-30 px-6 sm:px-8 md:px-12">
           <div className="flex justify-center items-center mt-4 mb-6">
             <Link href="/events">
               <div className="relative group">
@@ -273,7 +281,7 @@ export default function Home() {
 
         {/* Sponsors Banner Section */}
         <section className="bg-white py-8 border-t border-gray-200">
-          <h3 className="text-center text-xl font-bold text-gray-700 mb-4">Our Sponsors</h3>
+          <h3 className="text-center text-xl font-bold text-sambalpuri-bright mb-4">Our Sponsors</h3>
           <div ref={sponsorRef} className="w-full overflow-x-scroll overflow-y-hidden scroll-smooth touch-pan-x snap-x snap-mandatory -webkit-overflow-scrolling-touch">
             <div className="flex flex-nowrap gap-0 sm:gap-12 px-0 sm:px-4">
               {Array.from({ length: sponsorCount }).map((_, idx) =>
@@ -317,7 +325,7 @@ export default function Home() {
 
         {/* Our Core Members Section */}
         <section className="bg-white py-16 border-t border-gray-200">
-          <h3 className="text-center text-xl font-bold text-gray-700 mb-4">Our Core Members</h3>
+          <h3 className="text-center text-xl font-bold text-sambalpuri-bright mb-4">Our Core Members</h3>
           <div
             ref={coreRef}
             className="w-full overflow-x-scroll overflow-y-hidden scroll-smooth touch-pan-x snap-x snap-mandatory -webkit-overflow-scrolling-touch"
@@ -345,16 +353,10 @@ export default function Home() {
 
         <Footer />
       </main>
-      <div className="fixed bottom-0 w-full bg-sambalpuri-dark text-center py-3 text-lg font-semibold text-sambalpuri-white shadow-inner z-40">
+      <div className="fixed bottom-0 w-full bg-sambalpuri-dark px-6 sm:px-8 md:px-12 text-center py-3 text-lg font-semibold text-sambalpuri-white shadow-inner z-40">
         Countdown to Nuakhai: <span className="text-white">{countdown}</span>
       </div>
-      </div>
 
-      {/* Right Border */}
-      <div
-        className="block w-4 md:w-12 bg-repeat-y bg-right bg-contain"
-        style={{ backgroundImage: "url('/border.png')" }}
-      />
     </div>
   );
 }
