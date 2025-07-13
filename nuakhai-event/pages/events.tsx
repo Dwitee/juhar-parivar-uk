@@ -5,6 +5,15 @@ import Footer from '../components/Footer';
 
 export default function EventsPage() {
   const [timeLeft, setTimeLeft] = useState('');
+  const [flowers, setFlowers] = useState<{ id: number; x: number }[]>([]);
+  const handleMaaClick = () => {
+    const id = Date.now();
+    const x = Math.random() * (window.innerWidth - 40);
+    setFlowers(prev => [...prev, { id, x }]);
+    setTimeout(() => {
+      setFlowers(prev => prev.filter(f => f.id !== id));
+    }, 3000);
+  };
 
   useEffect(() => {
     const targetDate = new Date('2025-09-06T00:00:00'); // Nuakhai event date
@@ -122,6 +131,34 @@ export default function EventsPage() {
             >
               Fill the Form Now
             </a>
+          </div>
+        </section>
+        {/* Samlei Game */}
+        <section className="w-full overflow-hidden bg-gray-100 py-8">
+          {/* Clickable Maa Samlei image */}
+          <div className="flex justify-center items-center mb-4">
+            <img
+              src="/game/maa.png"
+              alt="Maa Samlei"
+              className="w-32 h-32 cursor-pointer"
+              onClick={handleMaaClick}
+            />
+          </div>
+          {/* Falling hibiscus emojis */}
+          <div className="relative h-64 w-full overflow-hidden">
+            {flowers.map(f => (
+              <span
+                key={f.id}
+                className="absolute text-4xl"
+                style={{
+                  top: 0,
+                  left: f.x,
+                  animation: 'fall 3s linear forwards',
+                }}
+              >
+                🌺
+              </span>
+            ))}
           </div>
         </section>
         <Footer />
