@@ -100,7 +100,7 @@ export default function Home() {
     },
     {
       profileUrl: 'https://www.linkedin.com/in/vijaymeher/',
-      photoUrl: '/coremembers/vijaymeher.jpeg',
+      photoUrl: '/coremembers/vijaymeher.png',
       name: 'Vijay Meher',
     },
     {
