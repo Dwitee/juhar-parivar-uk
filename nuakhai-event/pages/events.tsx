@@ -5,15 +5,51 @@ import Footer from '../components/Footer';
 
 export default function EventsPage() {
   const [timeLeft, setTimeLeft] = useState('');
-  const [flowers, setFlowers] = useState<{ id: number; x: number }[]>([]);
+  const [flowers, setFlowers] = useState<{ id: number; x: number; y?: number; speed?: number }[]>([]);
+  const [isFalling, setIsFalling] = useState(false);
   const handleMaaClick = () => {
-    const id = Date.now();
-    const x = Math.random() * (window.innerWidth - 40);
-    setFlowers(prev => [...prev, { id, x }]);
-    setTimeout(() => {
-      setFlowers(prev => prev.filter(f => f.id !== id));
-    }, 3000);
+    // Trigger falling for 3 seconds
+    setIsFalling(true);
+    // Clear any existing flowers
+    setFlowers([]);
+    // Stop falling after 3 seconds
+    setTimeout(() => setIsFalling(false), 3000);
   };
+  // Spawn falling flowers (hibiscus) at intervals, only when isFalling
+  useEffect(() => {
+    if (typeof window === 'undefined' || !isFalling) return;
+    const spawnInterval = setInterval(() => {
+      const id = Date.now() + Math.random();
+      const x = Math.random() * window.innerWidth;
+      const speed = 1 + Math.random() * 2;
+      setFlowers(prev => [...prev, { id, x, y: -50, speed }]);
+    }, 300);
+    return () => clearInterval(spawnInterval);
+  }, [isFalling]);
+
+  // Animate the falling flowers (hibiscus)
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    let animationFrame: number;
+    const gravity = 0.03;
+    const animate = () => {
+      setFlowers(prev =>
+        prev
+          .map(f => {
+            if (typeof f.y === 'number' && typeof f.speed === 'number') {
+              const newSpeed = f.speed + gravity;
+              const newY = f.y + newSpeed;
+              return { ...f, y: newY, speed: newSpeed };
+            }
+            return f;
+          })
+          .filter(f => typeof f.y !== 'number' || f.y < window.innerHeight + 50)
+      );
+      animationFrame = requestAnimationFrame(animate);
+    };
+    animate();
+    return () => cancelAnimationFrame(animationFrame);
+  }, []);
 
   useEffect(() => {
     const targetDate = new Date('2025-09-06T00:00:00'); // Nuakhai event date
@@ -41,6 +77,21 @@ export default function EventsPage() {
 
   return (
     <div className="relative min-h-screen bg-gray-100 text-gray-800">
+      {/* Full-screen falling hibiscus flowers */}
+      <div className="fixed inset-0 pointer-events-none overflow-hidden z-50">
+        {flowers.map(f => (
+          <span
+            key={f.id}
+            className="absolute text-4xl"
+            style={{
+              top: typeof f.y === 'number' ? f.y : -50,
+              left: f.x,
+            }}
+          >
+            🌺
+          </span>
+        ))}
+      </div>
       {/* Left Border */}
       <div
         className="absolute top-0 left-0 w-6 h-full bg-repeat-y bg-left bg-contain z-10"
@@ -143,22 +194,6 @@ export default function EventsPage() {
               className="w-32 h-32 cursor-pointer"
               onClick={handleMaaClick}
             />
-          </div>
-          {/* Falling hibiscus emojis */}
-          <div className="relative h-64 w-full overflow-hidden">
-            {flowers.map(f => (
-              <span
-                key={f.id}
-                className="absolute text-4xl"
-                style={{
-                  top: 0,
-                  left: f.x,
-                  animation: 'fall 3s linear forwards',
-                }}
-              >
-                🌺
-              </span>
-            ))}
           </div>
         </section>
         <Footer />
