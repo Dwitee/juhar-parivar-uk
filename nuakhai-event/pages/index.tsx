@@ -39,8 +39,35 @@ export default function Home() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImage(prev => (prev + 1) % images.length);
-    }, 3000);
+    }, 2000);
     return () => clearInterval(interval);
+  }, []);
+
+  const sponsorCount = 4;
+  const sponsorUrls = [
+    'https://www.spfsl.com/',
+    'https://potli.co.uk/',
+    'https://www.sheroproperties.com/',
+    'https://potli.co.uk/',
+  ];
+  const sponsorRef = useRef<HTMLDivElement>(null);
+
+  // Automatically scroll sponsors horizontally every 2 seconds
+  useEffect(() => {
+    const sponsorTimer = setInterval(() => {
+      const container = sponsorRef.current;
+      if (container) {
+        const { scrollLeft, clientWidth, scrollWidth } = container;
+        const maxScrollLeft = scrollWidth - clientWidth;
+        const nextScrollLeft = scrollLeft + clientWidth;
+        if (nextScrollLeft > maxScrollLeft) {
+          container.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          container.scrollTo({ left: nextScrollLeft, behavior: 'smooth' });
+        }
+      }
+    }, 2000);
+    return () => clearInterval(sponsorTimer);
   }, []);
 
   return (
@@ -191,41 +218,45 @@ export default function Home() {
         {/* Sponsors Banner Section */}
         <section className="bg-white py-8 border-t border-gray-200">
           <h3 className="text-center text-xl font-bold text-gray-700 mb-4">Our Sponsors</h3>
-          <div className="overflow-hidden relative">
-            <div className="flex animate-scroll-left space-x-8 px-4">
-              {[1, 2, 3, 4, 5].map((n) =>
-                n === 1 || n===5 ? (
-                  <a key={n} href="https://potli.co.uk/" target="_blank" rel="noopener noreferrer">
+          <div ref={sponsorRef} className="w-full overflow-x-scroll overflow-y-hidden scroll-smooth touch-pan-x snap-x snap-mandatory -webkit-overflow-scrolling-touch">
+            <div className="flex flex-nowrap gap-0 sm:gap-12 px-0 sm:px-4">
+              {Array.from({ length: sponsorCount }).map((_, idx) =>
+                idx < sponsorUrls.length ? (
+                  <a
+                    key={idx}
+                    href={sponsorUrls[idx]}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-shrink-0 w-full sm:w-auto flex items-center justify-center h-32 sm:h-24 snap-start"
+                  >
                     <img
-                      src={`/sponsors_icon${n}.png`}
-                      alt={`Sponsor ${n}`}
-                      className="h-16 w-auto object-contain"
+                      src={`/sponsors_icon${idx + 1}.png`}
+                      alt={`Sponsor ${idx + 1}`}
+                      className="h-24 w-auto object-contain transition duration-500 ease-in-out"
                     />
                   </a>
                 ) : (
-                  <img
-                    key={n}
-                    src={`/sponsors_icon${n}.png`}
-                    alt={`Sponsor ${n}`}
-                    className="h-16 w-auto object-contain"
-                  />
+                  <a
+                    key={idx}
+                    href="#"
+                    className="flex-shrink-0 w-full sm:w-auto flex items-center justify-center h-32 sm:h-24 space-x-2 snap-start"
+                  >
+                    <span className="bg-gray-200 h-16 w-32 sm:w-40 rounded-lg animate-pulse" />
+                  </a>
                 )
               )}
             </div>
           </div>
-          <style jsx>{`
-            @keyframes scroll-left {
-              0% {
-                transform: translateX(0%);
-              }
-              100% {
-                transform: translateX(-50%);
-              }
-            }
-            .animate-scroll-left {
-              animation: scroll-left 20s linear infinite;
-            }
-          `}</style>
+          {/* WhatsApp sponsor contact link */}
+          <p className="text-center mt-4 text-sm text-blue-600">
+            <a
+              href="https://wa.me/447718909769?text=Hi%20I%20am%20contacting%20you%20from%20Juhar%20Parivar%20UK%20website%2C%20I%20want%20to%20be%20a%20sponsor%20for%20the%20upcoming%20Event"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Want to be a sponsor? Click here to contact.
+            </a>
+          </p>
         </section>
 
         <Footer />
