@@ -88,6 +88,27 @@ export default function Home() {
       photoUrl: '/coremembers/uttam-tripathy.jpg',
       name: 'Uttam Tripathy',
     },
+    {
+      profileUrl: 'https://www.linkedin.com/in/debasish-mishra-41a21010/',
+      photoUrl: '/coremembers/debasish-mishra.jpg',
+      name: 'Debasish Mishra',
+    },
+    {
+      profileUrl: 'https://www.linkedin.com/in/satyendupattnaik/',
+      photoUrl: '/coremembers/satyendupattnaik.jpg',
+      name: 'Uttam Tripathy',
+    },
+    {
+      profileUrl: 'https://www.linkedin.com/in/vijaymeher/',
+      photoUrl: '/coremembers/vijaymeher.jpeg',
+      name: 'Vijay Meher',
+    },
+    {
+      profileUrl: 'https://www.linkedin.com/in/alok-kumar-naik/',
+      photoUrl: '/coremembers/alok.png',
+      name: 'Alok Naik',
+    },
+    
   ];
   useEffect(() => {
     const coreTimer = setInterval(() => {
@@ -295,7 +316,7 @@ export default function Home() {
         </section>
 
         {/* Our Core Members Section */}
-        <section className="bg-white py-8 border-t border-gray-200">
+        <section className="bg-white py-16 border-t border-gray-200">
           <h3 className="text-center text-xl font-bold text-gray-700 mb-4">Our Core Members</h3>
           <div
             ref={coreRef}
@@ -308,12 +329,12 @@ export default function Home() {
                   href={member.profileUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-shrink-0 w-full sm:w-auto flex flex-col items-center justify-center h-32 sm:h-24 snap-start"
+                  className="flex-shrink-0 w-full sm:w-auto flex flex-col items-center justify-center h-40 sm:h-32 snap-start"
                 >
                   <img
                     src={member.photoUrl}
                     alt={`Core member ${idx + 1}`}
-                    className="h-24 w-auto object-contain transition duration-500 ease-in-out rounded-full"
+                    className="h-32 sm:h-24 w-auto object-contain transition duration-500 ease-in-out rounded-full"
                   />
                   <span className="mt-2 text-sm font-medium text-gray-700">{member.name}</span>
                 </a>
