@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import Marquee from 'react-fast-marquee';
 
 export default function EventsPage() {
   const [timeLeft, setTimeLeft] = useState('');
@@ -113,7 +114,15 @@ export default function EventsPage() {
               Register Now
             </button>
           </Link>
+          <Marquee
+            gradient={false}
+            speed={50}
+            className="-mx-6 sm:-mx-8 md:-mx-12 py-2 text-sambalpuri-bright"
+          >
+            ⚡️ Hurry—Early Bird Ends Soon! Register NOW & score a FREE £10 raffle ticket! 🎟️🎉  
+          </Marquee>
         </div>
+        
 
         <section className="max-w-3xl mx-auto py-12 px-4 text-center">
           <h2 className="text-3xl font-bold mb-6 text-center">Nuakhai Bhetghat 2025</h2>
