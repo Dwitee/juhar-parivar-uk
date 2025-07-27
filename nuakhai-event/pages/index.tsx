@@ -5,6 +5,7 @@ import { faFacebookF, faTwitter, faInstagram, faYoutube, faWhatsapp, faLinkedin 
 import { faPhone } from '@fortawesome/free-solid-svg-icons';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+import Marquee from 'react-fast-marquee';
 
 export default function Home() {
   const eventDate = new Date('2025-09-06T10:00:00Z').getTime();
@@ -160,6 +161,13 @@ export default function Home() {
               </div>
             </Link>
           </div>
+          <Marquee
+            gradient={false}
+            speed={50}
+            className="-mx-6 sm:-mx-8 md:-mx-12 py-2 text-sambalpuri-bright"
+          >
+            ⚡️ Hurry—Early Bird Ends Soon! Register NOW & score a FREE £10 raffle ticket! 🎟️🎉  
+          </Marquee>
         </div>
         <section id="gallery" className="relative h-[70vh] w-full bg-white flex flex-col justify-center items-center text-center">
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-transparent z-10 pointer-events-none" />
