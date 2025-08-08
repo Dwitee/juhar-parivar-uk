@@ -49,7 +49,7 @@ export default function Home() {
     'https://www.spfsl.com/',
     'https://potli.co.uk/',
     'https://www.sheroproperties.com/',
-    'https://potli.co.uk/',
+    'https://www.amadeuslegal.co.uk/',
   ];
   const sponsorRef = useRef<HTMLDivElement>(null);
 
