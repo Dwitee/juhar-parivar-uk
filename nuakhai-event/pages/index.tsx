@@ -332,7 +332,7 @@ export default function Home() {
         </section>
 
         {/* Our Core Members Section */}
-        <section className="bg-white py-16 border-t border-gray-200">
+        {/* <section className="bg-white py-16 border-t border-gray-200">
           <h3 className="text-center text-xl font-bold text-sambalpuri-bright mb-4">Our Core Members</h3>
           <div
             ref={coreRef}
@@ -357,7 +357,7 @@ export default function Home() {
               ))}
             </div>
           </div>
-        </section>
+        </section> */}
 
         <Footer />
       </main>
